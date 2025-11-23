@@ -3,25 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MusicVibe - Música y Playlists</title>
+    <title>CineVibe - Películas y Series</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: "#1DB954", // Verde Spotify vibrante
-              secondary: "#191414", // Negro oscuro Spotify
-              accent: "#FDCA40", // Amarillo dorado para highlights
-              success: "#1DB954", // Verde éxito
-              warning: "#FF6B35", // Naranja advertencia
-              danger: "#FF4444", // Rojo peligro
-              bg: "#121212", // Fondo oscuro para aesthetic musical
-              card: "#181818", // Card gris muy oscuro
-              surface: "#282828", // Superficie intermedia
-              muted: "#B3B3B3", // Texto muted
-              info: "#535353", // Gris info
-              neutral: "#A0A0A0", // Gris neutral
+              primary: "#6366F1", // Indigo vibrante (azul-morado) - Default
+              secondary: "#EC4899", // Pink vibrante
+              accent: "#3B82F6", // Azul claro
+              success: "#10B981", // Verde éxito
+              warning: "#F59E0B", // Amarillo advertencia
+              danger: "#EF4444", // Rojo peligro
+              bg: "#0F172A", // Fondo oscuro slate para aesthetic
+              card: "#1E293B", // Card gris oscuro
+              surface: "#334155", // Superficie intermedia
+              muted: "#64748B", // Texto muted
+              info: "#06B6D4", // Cian info
+              neutral: "#94A3B8", // Gris neutral
             },
             borderRadius: {
               DEFAULT: "8px",
@@ -29,7 +29,7 @@
               xl: "8px",
             },
             fontFamily: {
-              sans: ['Circular', 'Inter', 'sans-serif'], // Default: Circular (Spotify-like), fallback Inter
+              sans: ['Inter', 'sans-serif'], // Default: Inter
             },
             animation: {
               'fade-in': 'fadeIn 0.6s ease-out',
@@ -54,7 +54,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Circular (Spotify-like) - Simulated with similar font -->
+    <!-- Inter (Default) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <!-- Geist Sans (Alternative - Modern, Geometric) -->
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -77,8 +77,8 @@
         to { transform: translateY(0); opacity: 1; }
       }
       @keyframes pulseGlow {
-        0%, 100% { box-shadow: 0 0 5px rgba(29, 185, 84, 0.5); }
-        50% { box-shadow: 0 0 20px rgba(29, 185, 84, 0.8); }
+        0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
+        50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
       }
       @keyframes bounceIn {
         0% { transform: scale(0.3); opacity: 0; }
@@ -108,7 +108,7 @@
       }
       @keyframes textGlow {
         from { text-shadow: 0 0 10px var(--primary); }
-        to { text-shadow: 0 0 20px var(--primary), 0 0 30px var(--accent); }
+        to { text-shadow: 0 0 20px var(--primary), 0 0 30px var(--secondary); }
       }
       @keyframes overlayFade {
         from { opacity: 0; }
@@ -148,7 +148,7 @@
         animation: ripple 0.6s linear;
       }
       body {
-        background: linear-gradient(135deg, #121212 0%, #181818 100%);
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
         font-family: 'Inter', sans-serif; /* Dynamic via JS */
         height: 100vh;
         overflow: hidden;
@@ -158,13 +158,13 @@
         overscroll-behavior: none;
       }
       #main-content { 
-        height: calc(100vh - 5rem - 6rem); /* Adjust for mini-player */
+        height: calc(100vh - 5rem); 
         overflow-y: auto; 
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: none;
         scroll-behavior: smooth;
       }
-      #home-view, #search-view, #library-view, #profile-view, #details-view, #genres-view, #playlists-view, #charts-view, #artists-view, #community-view, #chat-view, #discussions-view, #clips-view, #social-view { 
+      #home-view, #search-view, #watchlist-view, #profile-view, #details-view, #genres-view, #continue-view, #news-view, #kids-view, #community-view, #chat-view, #discussions-view, #shorts-view, #social-view { 
         height: 100%; 
         overflow-y: auto !important; 
         padding-bottom: 5rem; 
@@ -182,10 +182,13 @@
       body.outfit { font-family: 'Outfit', sans-serif; }
       body.bebas { font-family: 'Bebas Neue', sans-serif; }
       body.poppins { font-family: 'Poppins', sans-serif; }
-      body.theme-green { --primary: #1DB954; --secondary: #191414; --accent: #FDCA40; --success: #1DB954; --warning: #FF6B35; --danger: #FF4444; --info: #535353; --neutral: #A0A0A0; }
-      body.theme-purple { --primary: #9B59B6; --secondary: #2C3E50; --accent: #E74C3C; --success: #1DB954; --warning: #FF6B35; --danger: #FF4444; --info: #535353; --neutral: #A0A0A0; }
-      body.theme-blue { --primary: #3498DB; --secondary: #34495E; --accent: #FDCA40; --success: #1DB954; --warning: #FF6B35; --danger: #FF4444; --info: #535353; --neutral: #A0A0A0; }
-      :root { --primary: #1DB954; --secondary: #191414; --accent: #FDCA40; --success: #1DB954; --warning: #FF6B35; --danger: #FF4444; --info: #535353; --neutral: #A0A0A0; }
+      body.theme-purple { --primary: #6366F1; --secondary: #EC4899; --accent: #3B82F6; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      body.theme-blue { --primary: #3B82F6; --secondary: #6366F1; --accent: #EC4899; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      body.theme-pink { --primary: #EC4899; --secondary: #6366F1; --accent: #3B82F6; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      body.theme-green { --primary: #10B981; --secondary: #34D399; --accent: #059669; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      body.theme-orange { --primary: #F59E0B; --secondary: #FBBF24; --accent: #D97706; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      body.theme-red { --primary: #EF4444; --secondary: #F87171; --accent: #DC2626; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
+      :root { --primary: #6366F1; --secondary: #EC4899; --accent: #3B82F6; --success: #10B981; --warning: #F59E0B; --danger: #EF4444; --info: #06B6D4; --neutral: #94A3B8; }
       .text-primary { color: var(--primary); }
       .bg-primary { background-color: var(--primary); }
       .border-primary { border-color: var(--primary); }
@@ -210,7 +213,7 @@
       .text-neutral { color: var(--neutral); }
       .bg-neutral { background-color: var(--neutral); }
       .border-neutral { border-color: var(--neutral); }
-      /* Hero Slider Polish - Adapted for Albums */
+      /* Hero Slider Polish */
       .hero-section {
         position: relative;
         height: 70vh;
@@ -255,9 +258,9 @@
       }
       .slide-overlay {
         background: linear-gradient(135deg, 
-          rgba(18, 18, 18, 0.8) 0%, 
-          rgba(24, 24, 24, 0.6) 50%, 
-          rgba(29, 185, 84, 0.4) 100%
+          rgba(15, 23, 42, 0.8) 0%, 
+          rgba(30, 41, 59, 0.6) 50%, 
+          rgba(99, 102, 241, 0.4) 100%
         );
         width: 100%;
         height: 100%;
@@ -290,7 +293,7 @@
         justify-content: center;
       }
       .btn-hero {
-        background: linear-gradient(135deg, var(--primary) 70%,  var(--accent) 30%);
+        background: linear-gradient(135deg, var(--primary) 70%,  var(--secondary) 30%);
         border: none;
         padding: 0.8rem 1.5rem;
         border-radius: 8px;
@@ -304,7 +307,7 @@
       }
       .btn-hero:hover {
         animation: liquid-morph 0.3s ease;
-        box-shadow: 0 4px 12px rgba(29,185,84,0.2);
+        box-shadow: 0 4px 12px rgba(99,102,241,0.2);
       }
       .btn-hero.secondary {
         background: transparent;
@@ -327,7 +330,7 @@
       }
       .progress-bar {
         height: 100%;
-        background: linear-gradient(90deg, var(--primary), var(--accent));
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
         animation: data-viz 4s linear infinite;
       }
       .slider-nav {
@@ -351,7 +354,7 @@
         justify-content: center;
       }
       .slider-nav:hover {
-        background: rgba(29,185,84,0.2);
+        background: rgba(99,102,241,0.2);
         transform: translateY(-50%) scale(1.05);
         animation: liquid-morph 0.3s ease;
       }
@@ -378,15 +381,15 @@
       .dot.active {
         background: var(--primary);
         transform: scale(1.05);
-        box-shadow: 0 0 8px rgba(29,185,84,0.2);
+        box-shadow: 0 0 8px rgba(99,102,241,0.2);
         animation: liquid-morph 0.3s ease;
       }
       .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 0.5rem; padding: 0.25rem 1rem; scrollbar-width: none; }
       .carousel::-webkit-scrollbar { display: none; }
-      .album-art {
+      .movie-poster {
         flex: 0 0 auto;
         width: 115px;
-        height: 115px;
+        height: 170px;
         background-size: cover;
         background-position: center;
         border-radius: 9px;
@@ -395,19 +398,19 @@
         position: relative;
         border: 1px solid rgba(255,255,255,0.05);
       }
-      .album-art:hover {
+      .movie-poster:hover {
         animation: liquid-morph 0.3s ease;
-        box-shadow: 0 10px 30px rgba(29,185,84,0.3);
+        box-shadow: 0 10px 30px rgba(99,102,241,0.3);
         border:2px solid white;
-        border-color: rgba(29,185,84,0.1);
+        border-color: rgba(59,130,246,0.1);
       }
-      .album-art:active {
+      .movie-poster:active {
         transform: scale(0.98);
       }
-      .album-art::after {
+      .movie-poster::after {
         content: '';
       }
-      .art-overlay {
+      .poster-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -423,7 +426,7 @@
         transition: opacity 0.3s;
         z-index: 1;
       }
-      .album-art:hover .art-overlay { opacity: 1; }
+      .movie-poster:hover .poster-overlay { opacity: 1; }
       .overlay-top {
         display: flex;
         justify-content: space-between;
@@ -452,12 +455,12 @@
         padding: 0.25rem 0;
         border-radius: 0 0 8px 8px;
       }
-      .like-btn, .play-count { color: #fff; font-size: 0.8rem; cursor: pointer; }
-      .like-btn.liked { color: #1DB954; }
+      .like-btn, .view-count { color: #fff; font-size: 0.8rem; cursor: pointer; }
+      .like-btn.liked { color: #EC4899; }
       .bottom-nav {
         height: 5rem;
-        background: rgba(18,18,18,0.95);
-        border-top: 1px solid rgba(29,185,84,0.2);
+        background: rgba(15,23,42,0.95);
+        border-top: 1px solid rgba(99,102,241,0.2);
         backdrop-filter: blur(25px);
       }
       .search-results { display: none; }
@@ -476,54 +479,54 @@
         backdrop-filter: blur(10px);
       }
       .modal-content {
-        background: linear-gradient(180deg, #181818 0%, #121212 100%);
+        background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
         margin: 1% auto;
         padding: 0;
-        border: 1px solid rgba(29,185,84,0.2);
+        border: 1px solid rgba(99,102,241,0.2);
         width: 98%;
         max-width: 400px;
         border-radius: 8px;
         overflow: hidden;
         animation: slideUp 0.5s ease-out;
       }
-      .tab-active { color: #1DB954; border-bottom: 2px solid #1DB954; }
+      .tab-active { color: #6366F1; border-bottom: 2px solid #6366F1; }
       .hidden-view { display: none !important; }
       .active-view { display: block; }
-      .library-item {
+      .watchlist-item {
         display: flex; align-items: center;
         padding: 0.5rem; border-bottom: 1px solid rgba(48,48,48,0.5);
         gap: 0.5rem; transition: all 0.2s;
       }
-      .library-item:hover { background: rgba(29,185,84,0.1); border-bottom-color: #1DB954; }
+      .watchlist-item:hover { background: rgba(236,72,153,0.1); border-bottom-color: #EC4899; }
       .profile-stats {
         display: flex; justify-content: space-around;
         margin: 0.5rem 0; padding: 1rem;
-        background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(253,202,64,0.1));
-        border-radius: 8px; border: 1px solid rgba(29,185,84,0.2);
+        background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1));
+        border-radius: 8px; border: 1px solid rgba(59,130,246,0.2);
       }
       .genre-chip {
-        background: rgba(29,185,84,0.2);
+        background: rgba(99,102,241,0.2);
         color: #ffffff; padding: 0.4rem 0.8rem;
         border-radius: 8px; margin: 0.125rem;
         cursor: pointer; backdrop-filter: blur(15px);
-        transition: all 0.3s; border: 1px solid rgba(29,185,84,0.3);
+        transition: all 0.3s; border: 1px solid rgba(99,102,241,0.3);
         display: flex; align-items: center; gap: 0.25rem;
         font-size: 0.875rem;
       }
       .genre-chip:hover, .genre-chip.active {
-        background: linear-gradient(135deg, var(--primary), var(--accent));
-        transform: scale(1.02); box-shadow: 0 2px 8px rgba(29,185,84,0.1);
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        transform: scale(1.02); box-shadow: 0 2px 8px rgba(99,102,241,0.1);
         animation: liquid-morph 0.3s ease;
       }
       .btn-primary {
-        background: linear-gradient(135deg, var(--primary), var(--accent));
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         border: none; padding: 0.6rem 1.2rem;
         border-radius: 8px; font-weight: 500;
-        transition: all 0.3s; box-shadow: 0 2px 8px rgba(29,185,84,0.2);
+        transition: all 0.3s; box-shadow: 0 2px 8px rgba(99,102,241,0.2);
         color: #ffffff;
       }
       .btn-primary:hover {
-        transform: translateY(-1px); box-shadow: 0 4px 12px rgba(253,202,64,0.2);
+        transform: translateY(-1px); box-shadow: 0 4px 12px rgba(236,72,153,0.2);
         animation: liquid-morph 0.3s ease;
       }
       .btn-primary:active {
@@ -542,43 +545,43 @@
       .btn-secondary:active {
         transform: scale(0.98);
       }
-      .top-menu { position: fixed; top: 0; left: 0; right: 0; z-index: 40; background: rgba(18,18,18,0.95); backdrop-filter: blur(20px); padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+      .top-menu { position: fixed; top: 0; left: 0; right: 0; z-index: 40; background: rgba(15,23,42,0.95); backdrop-filter: blur(20px); padding: 0.5rem 1rem; display: flex; justify-content: space-between; align-items: center; }
       .hamburger { display: flex; flex-direction: column; gap: 3px; cursor: pointer; }
       .hamburger span { width: 24px; height: 2px; background: var(--primary); transition: 0.3s; }
-      .side-menu { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: linear-gradient(180deg, #181818 0%, #121212 100%); transition: left 0.3s; z-index: 45; padding: 2rem 1rem; }
+      .side-menu { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%); transition: left 0.3s; z-index: 45; padding: 2rem 1rem; }
       .side-menu.open { left: 0; }
       .side-menu ul { list-style: none; padding: 0; }
       .side-menu li { margin: 1rem 0; }
       .side-menu a { color: #f1f5f9; text-decoration: none; font-size: 1.1rem; display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; border-radius: 8px; transition: background 0.2s; }
-      .side-menu a:hover { background: rgba(29,185,84,0.1); }
-      .lyrics-section { padding: 1rem; background: rgba(253,202,64,0.05); border-radius: 8px; margin: 1rem; }
+      .side-menu a:hover { background: rgba(99,102,241,0.1); }
+      .trailer-section { padding: 1rem; background: rgba(236,72,153,0.05); border-radius: 8px; margin: 1rem; }
       .recommendations { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; }
       .details-view { 
-        background: linear-gradient(135deg, #121212 0%, #181818 50%, rgba(29,185,84,0.1) 100%);
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, rgba(99,102,241,0.1) 100%);
         box-shadow: inset 0 0 50px rgba(0,0,0,0.3);
       }
       .details-view .card { box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-      .tracks-list { display: flex; flex-direction: column; gap: 0.5rem; }
-      .track-item { display: flex; align-items: center; padding: 0.75rem; background: #181818; border-radius: 8px; gap: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-      .track-item .progress-bar { width: 100%; height: 4px; background: rgba(29,185,84,0.2); border-radius: 2px; overflow: hidden; }
-      .track-item .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s; animation: data-viz 2s ease-out; }
+      .episodes-list { display: flex; flex-direction: column; gap: 0.5rem; }
+      .episode-item { display: flex; align-items: center; padding: 0.75rem; background: #1E293B; border-radius: 8px; gap: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .episode-item .progress-bar { width: 100%; height: 4px; background: rgba(99,102,241,0.2); border-radius: 2px; overflow: hidden; }
+      .episode-item .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s; animation: data-viz 2s ease-out; }
       .genres-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-      .genre-card { background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(253,202,64,0.1)); padding: 1rem; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.3s; color: #f1f5f9; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-      .genre-card:hover { transform: scale(1.02); background: linear-gradient(135deg, rgba(29,185,84,0.2), rgba(253,202,64,0.2)); }
-      .news-item { background: #181818; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--accent); color: #f1f5f9; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-      .continue-item { display: flex; align-items: center; padding: 1rem; background: rgba(29,185,84,0.1); border-radius: 8px; gap: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .genre-card { background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1)); padding: 1rem; border-radius: 8px; text-align: center; cursor: pointer; transition: all 0.3s; color: #f1f5f9; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .genre-card:hover { transform: scale(1.02); background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(236,72,153,0.2)); }
+      .news-item { background: #1E293B; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--secondary); color: #f1f5f9; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .continue-item { display: flex; align-items: center; padding: 1rem; background: rgba(59,130,246,0.1); border-radius: 8px; gap: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
       .continue-progress { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
       .continue-progress-fill { height: 100%; background: var(--accent); transition: width 0.3s; }
       .rating-stars { display: flex; gap: 0.25rem; }
-      .rating-stars i { color: #FDCA40; font-size: 1rem; }
+      .rating-stars i { color: #FBBF24; font-size: 1rem; }
       .review-form { display: flex; flex-direction: column; gap: 0.5rem; }
-      .review-form textarea { resize: none; background: #181818; border: 1px solid rgba(29,185,84,0.3); border-radius: 8px; padding: 0.75rem; color: #f1f5f9; }
-      .user-review { background: rgba(29,185,84,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 3px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      .review-form textarea { resize: none; background: #1E293B; border: 1px solid rgba(99,102,241,0.3); border-radius: 8px; padding: 0.75rem; color: #f1f5f9; }
+      .user-review { background: rgba(99,102,241,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 3px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
       .user-review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
       .user-review-author { font-weight: 500; color: var(--accent); }
       .user-review-date { font-size: 0.8rem; color: var(--neutral); }
       .share-options { display: flex; gap: 0.5rem; margin-top: 1rem; }
-      .share-btn { padding: 0.5rem; border-radius: 50%; background: rgba(29,185,84,0.2); transition: all 0.3s; }
+      .share-btn { padding: 0.5rem; border-radius: 50%; background: rgba(99,102,241,0.2); transition: all 0.3s; }
       .share-btn:hover { background: var(--primary); transform: scale(1.1); animation: liquid-morph 0.3s ease; }
       #player-view { touch-action: pan-y; }
       .episode-nav { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); padding: 0.5rem 1rem; border-radius: 8px; display: none; z-index: 10; }
@@ -587,18 +590,18 @@
       .episode-info { position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); color: #ffffff; padding: 1rem; border-radius: 8px; text-align: center; z-index: 10; }
       .kids-mode { filter: grayscale(100%) contrast(1.2) brightness(1.1); }
       .voice-search { position: fixed; top: 6rem; right: 1rem; background: var(--primary); color: #ffffff; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 40; }
-      .voice-search:hover { background: var(--accent); animation: liquid-morph 0.3s ease; }
+      .voice-search:hover { background: var(--secondary); animation: liquid-morph 0.3s ease; }
       .offline-badge { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--accent); color: #ffffff; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
       /* Community, Chat, Discussions */
-      .chat-message { background: #181818; padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; border-left: 3px solid var(--accent); color: #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-      .chat-input { background: #282828; border: 1px solid var(--primary); color: #f1f5f9; padding: 0.75rem; border-radius: 8px; }
-      .discussion-thread { background: #181818; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .chat-message { background: #1E293B; padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; border-left: 3px solid var(--accent); color: #f1f5f9; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+      .chat-input { background: #334155; border: 1px solid var(--primary); color: #f1f5f9; padding: 0.75rem; border-radius: 8px; }
+      .discussion-thread { background: #1E293B; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
       .discussion-thread h4 { color: var(--primary); }
       .discussion-thread p { color: #f1f5f9; }
       /* Dark enhanced */
       .dark-enhanced { 
         --bg: #0a0e1a;
-        --card: #121212;
+        --card: #0f172a;
         --text-primary: #f8fafc;
         --text-secondary: #e2e8f0;
       }
@@ -609,38 +612,38 @@
       body.dark-enhanced .card { background: var(--card); color: var(--text-primary); }
       body.dark-enhanced h1, body.dark-enhanced h2, body.dark-enhanced h3 { color: var(--text-primary); }
       body.dark-enhanced p, body.dark-enhanced span { color: var(--text-secondary); }
-      .awards-section { padding: 1rem; background: rgba(29,185,84,0.05); border-radius: 8px; margin: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .awards-section { padding: 1rem; background: rgba(16,185,129,0.05); border-radius: 8px; margin: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
       .award-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
       .award-icon { width: 40px; height: 40px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
-      /* Clips Polish - Improved Comments */
-      #clips-view { height: 90vh; overflow-y: auto; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; overscroll-behavior: none; }
-      .clip-item { height: 80vh; scroll-snap-align: start; position: relative; display: flex; align-items: center; justify-content: center; background: #000; }
-      .clip-video { width: 100%; height: 100%; object-fit: cover; }
-      .clip-overlay { position: absolute; bottom: 60px; left: 20px; color: #fff; z-index: 5; width: 50%; background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; }
-      .clip-overlay h3 { font-size: 1rem; margin-bottom: 0.5rem; cursor: pointer; }
-      .clip-overlay p { font-size: 0.875rem; }
-      .clip-actions { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; color: #fff; z-index: 5; }
-      .clip-like { font-size: 1.5rem; cursor: pointer; transition: color 0.2s; padding: 0.5rem; border-radius: 50%; background: rgba(255,255,255,0.1); }
-      .clip-like:hover { background: rgba(255,255,255,0.2); }
-      .clip-like.liked { color: #1DB954; }
-      .clip-comments { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 70%); max-height: 40vh; overflow-y: auto; padding: 1rem; transform: translateY(100%); transition: transform 0.3s ease; scrollbar-width: thin; border-radius: 16px 16px 0 0; }
-      .clip-comments::-webkit-scrollbar { width: 4px; }
-      .clip-comments::-webkit-scrollbar-thumb { background: rgba(29,185,84,0.5); border-radius: 2px; }
-      .clip-comments.show { transform: translateY(0); }
-      .clip-comment-item { background: rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; }
-      .clip-comment-item header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--neutral); margin-bottom: 0.25rem; }
-      .clip-comment-item p { font-size: 0.875rem; margin-bottom: 0.5rem; }
+      /* Shorts Polish - Improved Comments */
+      #shorts-view { height: 90vh; overflow-y: auto; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; overscroll-behavior: none; }
+      .short-item { height: 80vh; scroll-snap-align: start; position: relative; display: flex; align-items: center; justify-content: center; background: #000; }
+      .short-video { width: 100%; height: 100%; object-fit: cover; }
+      .short-overlay { position: absolute; bottom: 60px; left: 20px; color: #fff; z-index: 5; width: 50%; background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; }
+      .short-overlay h3 { font-size: 1rem; margin-bottom: 0.5rem; cursor: pointer; }
+      .short-overlay p { font-size: 0.875rem; }
+      .short-actions { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; color: #fff; z-index: 5; }
+      .short-like { font-size: 1.5rem; cursor: pointer; transition: color 0.2s; padding: 0.5rem; border-radius: 50%; background: rgba(255,255,255,0.1); }
+      .short-like:hover { background: rgba(255,255,255,0.2); }
+      .short-like.liked { color: #EC4899; }
+      .short-comments { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 70%); max-height: 40vh; overflow-y: auto; padding: 1rem; transform: translateY(100%); transition: transform 0.3s ease; scrollbar-width: thin; border-radius: 16px 16px 0 0; }
+      .short-comments::-webkit-scrollbar { width: 4px; }
+      .short-comments::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.5); border-radius: 2px; }
+      .short-comments.show { transform: translateY(0); }
+      .short-comment-item { background: rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; }
+      .short-comment-item header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--neutral); margin-bottom: 0.25rem; }
+      .short-comment-item p { font-size: 0.875rem; margin-bottom: 0.5rem; }
       .comment-input { background: rgba(0,0,0,0.5); border: 1px solid var(--primary); color: #fff; padding: 0.5rem; border-radius: 4px; width: 100%; margin-top: 0.5rem; }
       /* Comments en Details */
-      .comments-section { background: rgba(29,185,84,0.1); border-left: 4px solid var(--primary); padding-left: 1rem; margin-top: 1rem; padding: 1rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-      .comment-item { padding: 0.75rem; background: rgba(24,24,24,0.5); border-radius: 4px; animation: comment-fade 0.4s ease-out; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+      .comments-section { background: rgba(99,102,241,0.1); border-left: 4px solid var(--primary); padding-left: 1rem; margin-top: 1rem; padding: 1rem; border-radius: 0 8px 8px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .comment-item { padding: 0.75rem; background: rgba(30,41,59,0.5); border-radius: 4px; animation: comment-fade 0.4s ease-out; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
       .comment-item header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--neutral); margin-bottom: 0.25rem; }
       .comment-item p { font-size: 0.875rem; margin-bottom: 0.5rem; }
       .comment-item .likes-flex { display: flex; align-items: center; gap: 0.25rem; font-size: 0.75rem; color: var(--neutral); }
       /* Player Comments */
       #player-comments { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); transform: translateY(100%); transition: transform 0.3s ease; max-height: 50vh; overflow-y: auto; scrollbar-width: thin; }
       #player-comments::-webkit-scrollbar { width: 4px; }
-      #player-comments::-webkit-scrollbar-thumb { background: rgba(29,185,84,0.5); border-radius: 2px; }
+      #player-comments::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.5); border-radius: 2px; }
       #player-comments.show { transform: translateY(0); }
       .player-comment-item { padding: 0.5rem; border-radius: 8px; font-size: 0.875rem; }
       .player-comment-item strong { color: var(--accent); }
@@ -648,8 +651,8 @@
       /* Quick Preview Modal */
       #preview-modal { display: none; position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 1rem; }
       #preview-modal.show { display: flex; }
-      .preview-content { width: 100%; max-width: 400px; height: 60vh; background: rgba(24,24,24,0.8); backdrop-filter: blur(20px); border: 2px solid var(--primary); border-radius: 8px; overflow: hidden; animation: bounce-in 0.3s ease-out; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-      .preview-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(29,185,84,0.2); }
+      .preview-content { width: 100%; max-width: 400px; height: 60vh; background: rgba(30,41,59,0.8); backdrop-filter: blur(20px); border: 2px solid var(--primary); border-radius: 8px; overflow: hidden; animation: bounce-in 0.3s ease-out; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+      .preview-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(99,102,241,0.2); }
       .preview-close { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
       .preview-trailer { width: 100%; height: 200px; }
       .preview-rating { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; }
@@ -661,10 +664,10 @@
       #discovery-chips::-webkit-scrollbar { display: none; }
       /* Thin scrollbar for comments */
       .thin-scrollbar::-webkit-scrollbar { width: 4px; }
-      .thin-scrollbar::-webkit-scrollbar-thumb { background: rgba(29,185,84,0.5); border-radius: 2px; }
+      .thin-scrollbar::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.5); border-radius: 2px; }
       /* Wallet Styles */
       .wallet-section {
-        background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(253,202,64,0.1));
+        background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(34,197,94,0.1));
         padding: 1rem;
         border-radius: 8px;
         margin: 1rem 0;
@@ -677,7 +680,7 @@
         color: var(--success);
       }
       .unlock-paywall {
-        background: rgba(255,68,68,0.1);
+        background: rgba(239,68,68,0.1);
         border: 1px solid var(--danger);
         color: var(--danger);
         padding: 0.5rem;
@@ -705,7 +708,7 @@
       .media-type-chip {
         padding: 0.5rem 1rem;
         border-radius: 20px;
-        background: rgba(29,185,84,0.2);
+        background: rgba(99,102,241,0.2);
         border: 1px solid var(--primary);
         color: white;
         cursor: pointer;
@@ -715,9 +718,9 @@
       .media-type-chip.active {
         background: var(--primary);
       }
-      /* Social Widgets - Inspired by Shared Playlists */
+      /* Social Widgets - Inspired by Trakt */
       .social-widget {
-        background: linear-gradient(135deg, rgba(29,185,84,0.1), rgba(253,202,64,0.1));
+        background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1));
         border: 1px solid var(--primary);
         border-radius: 8px;
         padding: 1rem;
@@ -728,9 +731,9 @@
       .activity-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 4px; }
       .activity-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.75rem; }
       .shared-list { display: flex; justify-content: space-between; align-items: center; }
-      .rating-prompt { text-align: center; padding: 1rem; background: rgba(29,185,84,0.1); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .rating-prompt { text-align: center; padding: 1rem; background: rgba(16,185,129,0.1); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
       /* Details Tabs */
-      #details-tabs { display: flex; overflow-x: auto; gap: 0; padding: 0.5rem 0; margin-bottom: 1rem; border-bottom: 1px solid rgba(29,185,84,0.2); }
+      #details-tabs { display: flex; overflow-x: auto; gap: 0; padding: 0.5rem 0; margin-bottom: 1rem; border-bottom: 1px solid rgba(99,102,241,0.2); }
       #details-tabs::-webkit-scrollbar { display: none; }
       .tab-btn { padding: 0.5rem 1rem; border: none; background: none; color: var(--neutral); cursor: pointer; white-space: nowrap; transition: all 0.3s; border-bottom: 2px solid transparent; }
       .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
@@ -738,32 +741,9 @@
       .tab-section.hidden { display: none; }
       /* Read More */
       .read-more-btn { color: var(--primary); text-decoration: underline; background: none; border: none; cursor: pointer; font-size: 0.875rem; }
-      /* Mini Player */
-      .mini-player {
-        position: fixed;
-        bottom: 5rem;
-        left: 0;
-        right: 0;
-        height: 6rem;
-        background: #181818;
-        border-top: 1px solid rgba(29,185,84,0.2);
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0 1rem;
-        z-index: 30;
-      }
-      .mini-player.hidden { display: none; }
-      .mini-art { width: 50px; height: 50px; background-size: cover; border-radius: 4px; }
-      .mini-info { flex: 1; }
-      .mini-title { font-weight: 500; }
-      .mini-artist { font-size: 0.875rem; color: var(--neutral); }
-      .mini-controls { display: flex; gap: 1rem; align-items: center; }
-      .mini-progress { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin: 0 1rem; }
-      .mini-progress-fill { height: 100%; background: var(--primary); transition: width 0.1s; }
     </style>
   </head>
-  <body class="theme-green dark-enhanced">
+  <body class="theme-purple dark-enhanced">
     <div id="app" class="h-full flex flex-col">
       <!-- Voice Search Gadget -->
       <div class="voice-search" onclick="startVoiceSearch()" role="button" aria-label="Búsqueda por voz" tabindex="0"><i class="ri-mic-line ri-lg"></i></div>
@@ -773,7 +753,7 @@
           <div class="hamburger" id="hamburger" role="button" aria-label="Abrir menú lateral" tabindex="0">
             <span></span><span></span><span></span>
           </div>
-          <h1 class="text-xl font-bold text-primary">MusicVibe</h1>
+          <h1 class="text-xl font-bold text-primary">CineVibe</h1>
         </div>
         <div class="flex items-center gap-4">
           <button id="login-btn" class="btn-secondary text-xs" role="button" aria-label="Iniciar sesión">Iniciar Sesión</button>
@@ -782,39 +762,39 @@
           <i class="ri-notification-3-line ri-lg text-accent" id="notifications-bell" role="button" aria-label="Notificaciones" tabindex="0"></i>
           <i class="ri-download-line ri-lg text-secondary" id="download-icon" onclick="toggleOffline()" role="button" aria-label="Descargas offline" tabindex="0"></i>
           <!-- Quiz rápido -->
-          <i class="ri-question-line ri-lg text-warning" onclick="startQuiz()" role="button" aria-label="Quiz de música" tabindex="0" title="Quiz Música"></i>
+          <i class="ri-question-line ri-lg text-warning" onclick="startQuiz()" role="button" aria-label="Quiz de cine" tabindex="0" title="Quiz Cine"></i>
           <!-- Quick Share -->
           <i class="ri-share-forward-line ri-lg text-info" onclick="quickShare()" role="button" aria-label="Compartir rápido" tabindex="0" title="Compartir Rápido"></i>
         </div>
       </nav>
-      <!-- Side Menu - Adapted for Music -->
+      <!-- Side Menu - Added Social -->
       <div id="side-menu" class="side-menu">
         <button id="close-menu" class="absolute top-4 right-4 text-white" role="button" aria-label="Cerrar menú"><i class="ri-close-line ri-lg"></i></button>
         <ul>
           <li><a href="#" onclick="showView('home-view')" role="button" aria-label="Ir a inicio"><i class="ri-home-line"></i> Inicio</a></li>
-          <li><a href="#" onclick="showView('playlists-view')" role="button" aria-label="Mis playlists"><i class="ri-play-list-line"></i> Playlists</a></li>
-          <li><a href="#" onclick="showView('library-view')" role="button" aria-label="Biblioteca"><i class="ri-inbox-line"></i> Biblioteca</a></li>
-          <li><a href="#" onclick="showView('artists-view')" role="button" aria-label="Artistas"><i class="ri-user-star-line"></i> Artistas</a></li>
-          <li><a href="#" onclick="showView('genres-view')" role="button" aria-label="Géneros"><i class="ri-menu-line"></i> Géneros</a></li>
-          <li><a href="#" onclick="showView('charts-view')" role="button" aria-label="Charts"><i class="ri-line-chart-line"></i> Charts</a></li>
-          <li><a href="#" onclick="showView('search-view')" role="button" aria-label="Buscar música"><i class="ri-search-line"></i> Buscar</a></li>
+          <li><a href="#" onclick="showView('continue-view')" role="button" aria-label="Continuar viendo"><i class="ri-play-circle-line"></i> Continuar Viendo</a></li>
+          <li><a href="#" onclick="showView('kids-view')" role="button" aria-label="Contenido para niños"><i class="ri-user-kid-line"></i> Para Niños</a></li>
+          <li><a href="#" onclick="showView('genres-view')" role="button" aria-label="Explorar géneros"><i class="ri-menu-line"></i> Géneros</a></li>
+          <li><a href="#" onclick="showView('news-view')" role="button" aria-label="Noticias de cine"><i class="ri-news-line"></i> Noticias</a></li>
+          <li><a href="#" onclick="showView('awards-view')" role="button" aria-label="Premios y reconocimientos"><i class="ri-trophy-line"></i> Premios</a></li>
+          <li><a href="#" onclick="showView('search-view')" role="button" aria-label="Buscar contenido"><i class="ri-search-line"></i> Buscar</a></li>
           <li><a href="#" onclick="fetchTrending()" role="button" aria-label="Ver tendencias"><i class="ri-fire-line"></i> Tendencias</a></li>
-          <li><a href="#" onclick="fetchTopRated()" role="button" aria-label="Top tracks"><i class="ri-star-line"></i> Top Tracks</a></li>
-          <li><a href="#" onclick="showView('library-view')" role="button" aria-label="Mis favoritos"><i class="ri-heart-line"></i> Favoritos</a></li>
+          <li><a href="#" onclick="fetchTopRated()" role="button" aria-label="Top calificadas"><i class="ri-star-line"></i> Top Calificadas</a></li>
+          <li><a href="#" onclick="showView('watchlist-view')" role="button" aria-label="Mi lista de favoritos"><i class="ri-heart-line"></i> Favoritos</a></li>
           <li><a href="#" onclick="showView('social-view')" role="button" aria-label="Social"><i class="ri-group-line"></i> Social</a></li>
           <li><a href="#" onclick="showView('profile-view')" role="button" aria-label="Ver perfil"><i class="ri-user-line"></i> Perfil</a></li>
           <li><a href="#" onclick="showView('community-view')" role="button" aria-label="Comunidad"><i class="ri-group-line"></i> Comunidad</a></li>
           <li><a href="#" onclick="showView('chat-view')" role="button" aria-label="Chat general"><i class="ri-chat-3-line"></i> Chat</a></li>
           <li><a href="#" onclick="showView('discussions-view')" role="button" aria-label="Discusiones"><i class="ri-discuss-line"></i> Discusiones</a></li>
-          <li><a href="#" onclick="showView('clips-view')" role="button" aria-label="Ver clips"><i class="ri-video-line"></i> Clips</a></li>
+          <li><a href="#" onclick="showView('shorts-view')" role="button" aria-label="Ver shorts"><i class="ri-video-line"></i> Shorts</a></li>
           <li><a href="#" onclick="showView('settings-modal')" role="button" aria-label="Configuración"><i class="ri-settings-3-line"></i> Configuración</a></li>
         </ul>
       </div>
       <!-- Main Content -->
       <div id="main-content" class="flex-1 relative pt-16">
-        <!-- Home View - Adapted for Music: Featured Playlists, Charts -->
+        <!-- Home View - Added Community Picks Widget -->
         <div id="home-view" class="active-view">
-          <!-- Hero Slider - Featured Albums/Playlists -->
+          <!-- Hero Slider -->
           <div class="hero-section">
             <div class="slider-container" id="hero-slider-container">
               <div class="slider-track" id="slider-track">
@@ -828,49 +808,49 @@
               </div>
             </div>
           </div>
-          <!-- Media Type Filter (Albums/Artists/All) -->
+          <!-- Media Type Filter (Movies/TV/All) -->
           <div class="media-type-filter" id="media-type-filter">
-            <button class="media-type-chip active" data-type="all" onclick="filterMediaType('all')">Todo</button>
-            <button class="media-type-chip" data-type="album" onclick="filterMediaType('album')">Álbumes</button>
-            <button class="media-type-chip" data-type="artist" onclick="filterMediaType('artist')">Artistas</button>
+            <button class="media-type-chip active" data-type="all" onclick="filterMediaType('all')">Todas</button>
+            <button class="media-type-chip" data-type="movie" onclick="filterMediaType('movie')">Películas</button>
+            <button class="media-type-chip" data-type="tv" onclick="filterMediaType('tv')">Series</button>
           </div>
-          <!-- Discovery Chips - Music Genres -->
+          <!-- Discovery Chips -->
           <div id="discovery-chips" class="p-2 flex overflow-x-auto gap-0.5rem">
-            <button class="genre-chip active" data-genre="0" onclick="filterByGenre(0)" role="button" aria-label="Todos los géneros"><i class="ri-menu-line ri-xs"></i>Todo</button>
-            <button class="genre-chip" data-genre="pop" onclick="filterByGenre('pop')" role="button" aria-label="Género pop"><i class="ri-heart-line ri-xs"></i>Pop</button>
-            <button class="genre-chip" data-genre="rock" onclick="filterByGenre('rock')" role="button" aria-label="Género rock"><i class="ri-sword-line ri-xs"></i>Rock</button>
-            <button class="genre-chip" data-genre="hiphop" onclick="filterByGenre('hiphop')" role="button" aria-label="Género hip-hop"><i class="ri-mic-line ri-xs"></i>Hip-Hop</button>
-            <button class="genre-chip" data-genre="electronic" onclick="filterByGenre('electronic')" role="button" aria-label="Género electronic"><i class="ri-lightning-line ri-xs"></i>Electronic</button>
+            <button class="genre-chip active" data-genre="0" onclick="filterByGenre(0)" role="button" aria-label="Todos los géneros"><i class="ri-menu-line ri-xs"></i>Todos</button>
+            <button class="genre-chip" data-genre="28" onclick="filterByGenre(28)" role="button" aria-label="Género acción"><i class="ri-sword-line ri-xs"></i>Acción</button>
+            <button class="genre-chip" data-genre="18" onclick="filterByGenre(18)" role="button" aria-label="Género drama"><i class="ri-emotions-line ri-xs"></i>Drama</button>
+            <button class="genre-chip" data-genre="35" onclick="filterByGenre(35)" role="button" aria-label="Género comedia"><i class="ri-happy-line ri-xs"></i>Comedia</button>
+            <button class="genre-chip" data-genre="27" onclick="filterByGenre(27)" role="button" aria-label="Género terror"><i class="ri-forbid-line ri-xs"></i>Terror</button>
           </div>
           <section class="p-2">
             <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-user-heart-line text-secondary"></i> Para Ti</h2>
             <div class="recommendations space-y-2" id="recommendations-grid">
-              <!-- Deezer loaded -->
+              <!-- TMDB loaded -->
             </div>
           </section>
-          <!-- Community Picks Widget (Shared Playlists) -->
+          <!-- Community Picks Widget (Trakt-inspired: Popular lists/trending with social) -->
           <section class="social-widget">
-            <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-group-line text-info"></i> Playlists Compartidas</h2>
+            <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-group-line text-info"></i> Picks de la Comunidad</h2>
             <div class="carousel" id="community-picks-carousel">
-              <!-- Simulated shared playlists -->
+              <!-- Simulated social picks -->
             </div>
           </section>
-          <!-- Awards - Adapted to Music Awards -->
+          <!-- Awards -->
           <section class="awards-section">
             <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-trophy-line text-success"></i> Premios Recientes</h2>
             <div class="space-y-2">
               <div class="award-item">
                 <div class="award-icon"><i class="ri-crown-line"></i></div>
                 <div>
-                  <p class="font-medium">Mejor Álbum: Grammys 2025</p>
-                  <p class="text-sm text-neutral">Ganador: Folklore 2</p>
+                  <p class="font-medium">Mejor Película: Oscars 2025</p>
+                  <p class="text-sm text-neutral">Ganador: Inception 2</p>
                 </div>
               </div>
               <div class="award-item">
                 <div class="award-icon"><i class="ri-cup-line"></i></div>
                 <div>
-                  <p class="font-medium">Mejor Artista: Billboard</p>
-                  <p class="text-sm text-neutral">Ganador: Taylor Swift</p>
+                  <p class="font-medium">Mejor Serie: Emmys</p>
+                  <p class="text-sm text-neutral">Ganador: Stranger Things S5</p>
                 </div>
               </div>
             </div>
@@ -882,71 +862,86 @@
               </div>
             </section>
             <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-mic-line text-primary"></i> Pop</h2>
-              <div class="carousel" id="pop-carousel">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-sword-line text-primary"></i> Acción</h2>
+              <div class="carousel" id="action-carousel">
               </div>
             </section>
-            <section class="lyrics-section">
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-file-text-line text-secondary"></i> Letras Nuevas</h2>
-              <div class="flex gap-2" id="lyrics-container">
-              </div>
-            </section>
-            <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-guitar-line text-accent"></i> Rock</h2>
-              <div class="carousel" id="rock-carousel">
+            <section class="trailer-section">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-video-line text-secondary"></i> Trailers Nuevos</h2>
+              <div class="flex gap-2" id="trailers-container">
               </div>
             </section>
             <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-trophy-line text-primary"></i> Top Charts</h2>
-              <div class="carousel" id="top-charts-carousel">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-emotions-line text-accent"></i> Drama</h2>
+              <div class="carousel" id="drama-carousel">
               </div>
             </section>
             <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-time-line text-secondary"></i> Nuevos Lanzamientos</h2>
-              <div class="carousel" id="new-releases-carousel">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-trophy-line text-primary"></i> Top Calificadas</h2>
+              <div class="carousel" id="top-rated-carousel">
               </div>
             </section>
             <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-headphones-line text-accent"></i> Electronic</h2>
-              <div class="carousel" id="electronic-carousel">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-time-line text-secondary"></i> Próximamente</h2>
+              <div class="carousel" id="upcoming-carousel">
               </div>
             </section>
             <section>
-              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-volume-up-line text-secondary"></i> Hip-Hop</h2>
-              <div class="carousel" id="hiphop-carousel">
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-happy-line text-accent"></i> Comedia</h2>
+              <div class="carousel" id="comedy-carousel">
+              </div>
+            </section>
+            <section>
+              <h2 class="text-lg font-semibold mb-2 flex items-center gap-2 px-1"><i class="ri-forbid-line text-secondary"></i> Terror</h2>
+              <div class="carousel" id="horror-carousel">
               </div>
             </section>
           </div>
         </div>
-        <!-- Library View -->
-        <div id="library-view" class="hidden-view">
+        <!-- Continue Watching View -->
+        <div id="continue-view" class="hidden-view">
           <div class="p-2">
-            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-inbox-line text-primary"></i> Tu Biblioteca</h1>
-            <div class="space-y-2" id="library-items">
+            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-play-circle-line text-primary"></i> Continuar Viendo</h1>
+            <div class="space-y-2" id="continue-items">
             </div>
           </div>
         </div>
-        <!-- Playlists View -->
-        <div id="playlists-view" class="hidden-view">
+        <!-- Kids View -->
+        <div id="kids-view" class="hidden-view kids-mode">
           <div class="p-2">
-            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-play-list-line text-accent"></i> Playlists</h1>
-            <div class="carousel" id="playlists-carousel">
+            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-user-kid-line text-accent"></i> Para Niños</h1>
+            <div class="carousel" id="kids-carousel">
             </div>
           </div>
         </div>
-        <!-- Charts View -->
-        <div id="charts-view" class="hidden-view">
+        <!-- News View -->
+        <div id="news-view" class="hidden-view">
           <div class="p-2">
-            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-line-chart-line text-accent"></i> Charts</h1>
-            <div class="space-y-2" id="charts-items">
+            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-news-line text-accent"></i> Noticias Cine</h1>
+            <div class="space-y-2" id="news-items">
             </div>
           </div>
         </div>
-        <!-- Artists View -->
-        <div id="artists-view" class="hidden-view">
+        <!-- Awards View -->
+        <div id="awards-view" class="hidden-view">
           <div class="p-2">
-            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-user-star-line text-accent"></i> Artistas</h1>
-            <div class="carousel" id="artists-carousel">
+            <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-trophy-line text-success"></i> Premios y Reconocimientos</h1>
+            <div class="space-y-4">
+              <div class="bg-card p-4 rounded-lg">
+                <h3 class="text-lg font-semibold mb-2">Oscars 2025</h3>
+                <ul class="space-y-1 text-sm">
+                  <li>Mejor Película: <span class="text-accent">Inception 2</span></li>
+                  <li>Mejor Director: <span class="text-accent">Christopher Nolan</span></li>
+                  <li>Mejor Actor: <span class="text-accent">Leonardo DiCaprio</span></li>
+                </ul>
+              </div>
+              <div class="bg-card p-4 rounded-lg">
+                <h3 class="text-lg font-semibold mb-2">Emmys 2025</h3>
+                <ul class="space-y-1 text-sm">
+                  <li>Mejor Serie Drama: <span class="text-accent">Stranger Things S5</span></li>
+                  <li>Mejor Guion: <span class="text-accent">The Duffer Brothers</span></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -966,7 +961,7 @@
         <div id="search-view" class="hidden-view">
           <div class="p-1">
             <div class="relative mb-2">
-              <input type="text" id="search-input" placeholder="Buscar canciones, artistas..." class="w-full bg-card rounded-full py-2.5 pl-10 pr-4 text-white border-none focus:outline-none focus:ring-1 focus:ring-primary/50 text-sm" />
+              <input type="text" id="search-input" placeholder="Buscar con vibes..." class="w-full bg-card rounded-full py-2.5 pl-10 pr-4 text-white border-none focus:outline-none focus:ring-1 focus:ring-primary/50 text-sm" />
               <i class="ri-search-line absolute left-3 top-1/2 transform -translate-y-1/2 text-accent"></i>
             </div>
             <div id="search-results" class="search-results active">
@@ -976,7 +971,15 @@
             </div>
           </div>
         </div>
-        <!-- Social View -->
+        <!-- Watchlist View -->
+        <div id="watchlist-view" class="hidden-view">
+          <div class="p-2">
+            <h2 class="text-xl font-bold mb-3 flex items-center gap-2"><i class="ri-heart-line text-secondary"></i> Mi Lista</h2>
+            <div class="space-y-2" id="watchlist-items">
+            </div>
+          </div>
+        </div>
+        <!-- Social View - New, Trakt-inspired -->
         <div id="social-view" class="hidden-view">
           <div class="p-2">
             <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-group-line text-info"></i> Social</h1>
@@ -988,26 +991,26 @@
                   <!-- Simulated -->
                   <div class="activity-item">
                     <div class="activity-avatar">AF</div>
-                    <div><strong>Amy Fan:</strong> Escuchó <em>Evermore</em> 5 veces</div>
+                    <div><strong>Amy Friend:</strong> Acaba de ver <em>Inception</em> ★★★★</div>
                   </div>
                   <div class="activity-item">
                     <div class="activity-avatar">BF</div>
-                    <div><strong>Bob Beats:</strong> Creó playlist "Chill Vibes"</div>
+                    <div><strong>Bob Fan:</strong> Añadió 3 películas a su lista</div>
                   </div>
                 </div>
                 <button class="btn-secondary mt-2" onclick="loadMoreFriends()">Ver Más</button>
               </div>
-              <!-- Shared Playlists Widget -->
+              <!-- Shared Lists Widget -->
               <div class="social-widget">
-                <h3 class="text-lg font-semibold mb-2">Playlists Compartidas</h3>
+                <h3 class="text-lg font-semibold mb-2">Listas Compartidas</h3>
                 <div class="shared-list">
-                  <span>Playlist de Pop de Comunidad</span>
-                  <button class="btn-primary text-xs">Ver Playlist (20 tracks)</button>
+                  <span>Lista de Acción de Comunidad</span>
+                  <button class="btn-primary text-xs">Ver Lista (12 items)</button>
                 </div>
               </div>
               <!-- Rating Prompt Widget -->
               <div class="rating-prompt">
-                <h3>¿Qué opinas del último hit?</h3>
+                <h3>¿Qué opinas de la última tendencia?</h3>
                 <div class="rating-stars mx-auto mb-2">
                   <i class="ri-star-line text-2xl cursor-pointer" onclick="socialRate(1)"></i>
                   <i class="ri-star-line text-2xl cursor-pointer" onclick="socialRate(2)"></i>
@@ -1020,17 +1023,17 @@
             </div>
           </div>
         </div>
-        <!-- Profile View -->
+        <!-- Profile View - Added Social Stats Widget -->
         <div id="profile-view" class="hidden-view">
           <div class="p-2">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
                   <i class="ri-user-line text-white ri-lg"></i>
                 </div>
                 <div>
                   <h2 class="text-lg font-bold" id="profile-name">Usuario</h2>
-                  <p class="text-xs text-gray-400">Personaliza tu experiencia musical</p>
+                  <p class="text-xs text-gray-400">Personaliza tu experiencia</p>
                 </div>
               </div>
               <button id="settings-btn" class="text-gray-400" role="button" aria-label="Abrir configuración"><i class="ri-settings-3-line ri-lg"></i></button>
@@ -1051,18 +1054,18 @@
                 </div>
                 <div>
                   <span class="text-xl font-bold block" id="shared-count">12</span>
-                  <span class="text-xs text-gray-400">Compartidas</span>
+                  <span class="text-xs text-gray-400">Compartidos</span>
                 </div>
               </div>
             </div>
             <div class="profile-stats mb-4">
               <div>
-                <span class="text-xl font-bold block" id="library-count">0</span>
-                <span class="text-xs text-gray-400">En Biblioteca</span>
+                <span class="text-xl font-bold block" id="watchlist-count">0</span>
+                <span class="text-xs text-gray-400">En Lista</span>
               </div>
               <div>
-                <span class="text-xl font-bold block" id="listen-time">0h</span>
-                <span class="text-xs text-gray-400">Escuchado</span>
+                <span class="text-xl font-bold block" id="watch-time">0h</span>
+                <span class="text-xs text-gray-400">Visto</span>
               </div>
               <div>
                 <span class="text-xl font-bold block" id="avg-rating">★0</span>
@@ -1085,11 +1088,11 @@
             </section>
           </div>
         </div>
-        <!-- Details View - For Albums/Artists -->
+        <!-- Details View -->
         <div id="details-view" class="hidden-view details-view">
           <div class="relative h-64 bg-cover bg-center" id="details-backdrop" style="background-image: url('');"></div>
           <div class="relative -mt-20 px-4">
-            <img id="details-poster" class="w-32 h-32 rounded-lg shadow-lg mx-auto" src="" alt="" />
+            <img id="details-poster" class="w-32 h-48 rounded-lg shadow-lg mx-auto" src="" alt="" />
             <span class="offline-badge hidden" id="offline-badge">Descargado</span>
           </div>
           <div class="p-4">
@@ -1099,23 +1102,23 @@
             <!-- Overview Section -->
             <div id="overview-section" class="tab-section">
               <div class="flex items-center gap-2 text-sm text-gray-300 mb-3">
-                <span id="details-release"></span> • <span id="details-duration"></span> • <span id="details-rating" class="text-accent flex items-center gap-1">★<span></span> <i class="ri-star-fill"></i></span>
+                <span id="details-release"></span> • <span id="details-runtime"></span> • <span id="details-rating" class="text-accent flex items-center gap-1">★<span></span> <i class="ri-star-fill"></i></span>
               </div>
-              <!-- Likes y Reproducciones -->
+              <!-- Likes y Vistas -->
               <div class="flex items-center gap-4 mb-3 text-sm text-neutral">
                 <div class="flex items-center gap-1">
                   <i class="ri-heart-line like-btn" id="details-like" onclick="toggleLikeDetails()" role="button" aria-label="Dar like" tabindex="0"></i>
                   <span id="details-likes">0 likes</span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <i class="ri-play-circle-line"></i>
-                  <span id="details-plays">1.2M reproducciones</span>
+                  <i class="ri-eye-line"></i>
+                  <span id="details-views">1.2M vistas</span>
                 </div>
               </div>
               <p id="details-overview" class="mb-4 text-sm opacity-90" style="color: #e2e8f0;"></p>
               <div class="flex gap-2 mb-4">
                 <button class="btn-primary flex-1 flex items-center justify-center gap-1 ripple-effect" id="play-details-btn" onclick="unlockAndPlay()" role="button" aria-label="Reproducir"><i class="ri-play-fill"></i>Reproducir</button>
-                <button class="btn-secondary flex-1 flex items-center justify-center gap-1 ripple-effect" onclick="addToLibrary('details')" role="button" aria-label="Añadir a biblioteca"><i class="ri-add-line"></i>Biblioteca</button>
+                <button class="btn-secondary flex-1 flex items-center justify-center gap-1 ripple-effect" onclick="addToList('details')" role="button" aria-label="Añadir a lista"><i class="ri-add-line"></i>Lista</button>
                 <button class="btn-secondary flex-1 flex items-center justify-center gap-1 ripple-effect" onclick="downloadItem()" role="button" aria-label="Descargar"><i class="ri-download-line"></i>Descargar</button>
               </div>
               <div id="paywall-section" class="unlock-paywall hidden">
@@ -1137,11 +1140,11 @@
                 </div>
               </div>
             </div>
-            <!-- Tracks Section for Albums -->
-            <div id="tracks-section" class="tab-section hidden">
+            <!-- Cast Section -->
+            <div id="cast-section" class="tab-section hidden">
               <div class="mb-4">
-                <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-play-list-line text-secondary"></i>Tracks</h3>
-                <div class="tracks-list" id="tracks-list"></div>
+                <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-team-line text-secondary"></i>Elenco</h3>
+                <div class="flex overflow-x-auto gap-2" id="cast-list"></div>
               </div>
             </div>
             <!-- Reviews Section -->
@@ -1158,9 +1161,22 @@
                 <h3 class="text-lg font-semibold mb-2 flex items-center gap-1"><i class="ri-chat-3-line ri-sm"></i>Comentarios y Vibes</h3>
                 <div id="comments-list" class="space-y-1.5"></div>
                 <div class="mt-2 space-y-2">
-                  <textarea id="comment-input" rows="2" placeholder="Comparte tu vibe sobre esta canción o álbum..." class="w-full bg-card border border-primary/30 rounded p-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50"></textarea>
+                  <textarea id="comment-input" rows="2" placeholder="Comparte tu vibe sobre esta película o serie..." class="w-full bg-card border border-primary/30 rounded p-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50"></textarea>
                   <button class="btn-primary px-4 py-1 rounded text-sm" onclick="addComment()" role="button" aria-label="Añadir comentario">Añadir Comentario</button>
                 </div>
+              </div>
+            </div>
+            <!-- Episodes Section -->
+            <div id="episodes-tab-section" class="tab-section hidden">
+              <div id="episodes-section" class="hidden">
+                <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="ri-tv-line text-primary"></i>Episodios</h3>
+                <div class="flex justify-between items-center mb-2">
+                  <span>Temporada:</span>
+                  <select id="season-select" class="bg-card text-white rounded p-1">
+                    <!-- Dynamic -->
+                  </select>
+                </div>
+                <div class="episodes-list" id="episodes-list"></div>
               </div>
             </div>
             <!-- Similar Section -->
@@ -1172,39 +1188,38 @@
             </div>
           </div>
         </div>
-        <!-- Player View - Audio Player -->
+        <!-- Player View -->
         <div id="player-view" class="hidden-view fixed inset-0 z-40 bg-black">
-          <div class="relative h-full flex flex-col" id="player-container">
-            <audio id="audio-player" class="hidden" controls></audio>
-            <div class="flex-1 flex items-center justify-center">
-              <img id="player-art" class="w-64 h-64 rounded-lg shadow-2xl" src="" alt="Album Art">
+          <div class="relative h-full" id="player-container">
+            <video id="video-player" class="w-full h-full object-contain" controls></video>
+            <div class="episode-info hidden" id="episode-info">
+              <h3 id="series-title"></h3>
+              <p id="episode-details">Temporada 1 • Episodio 1</p>
             </div>
-            <div class="p-4 bg-gradient-to-t from-black to-transparent">
-              <div class="text-center mb-4">
-                <h2 id="player-title" class="text-xl font-bold">Título</h2>
-                <p class="text-sm text-gray-300 flex items-center justify-center gap-1"><i class="ri-user-line"></i> Artista</p>
-              </div>
-              <div class="flex items-center justify-between mb-4">
-                <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" onclick="prevTrack()" role="button" aria-label="Anterior"><i class="ri-skip-back-fill ri-xl"></i></button>
-                <button id="play-pause-btn" class="text-white p-4 rounded-full bg-primary hover:bg-accent ripple-effect" onclick="togglePlay()" role="button" aria-label="Play/Pause"><i class="ri-play-fill ri-2x"></i></button>
-                <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" onclick="nextTrack()" role="button" aria-label="Siguiente"><i class="ri-skip-forward-fill ri-xl"></i></button>
-              </div>
-              <div class="flex items-center gap-4">
-                <span id="current-time" class="text-sm text-neutral">0:00</span>
-                <div class="flex-1 mx-4">
-                  <div class="w-full bg-neutral/30 rounded-full h-1 cursor-pointer" id="progress-bar" onclick="seekTrack(event)"></div>
-                  <div class="w-0 bg-primary h-1 rounded-full transition-all duration-100" id="progress-fill"></div>
+            <div class="episode-nav" id="episode-nav">
+              <button onclick="prevEpisode()" role="button" aria-label="Episodio anterior"><i class="ri-arrow-left-s-line"></i></button>
+              <span id="nav-episode">Ep 1</span>
+              <button onclick="nextEpisode()" role="button" aria-label="Siguiente episodio"><i class="ri-arrow-right-s-line"></i></button>
+            </div>
+            <div id="subtitle-overlay" class="absolute bottom-20 left-0 right-0 text-center text-white text-lg bg-black bg-opacity-50 py-1 hidden"></div>
+            <div class="player-overlay absolute inset-0 flex flex-col justify-between p-4">
+              <button id="back-to-home" class="absolute top-4 left-4 text-white z-10 rounded-full p-2 hover:bg-primary/20 ripple-effect" role="button" aria-label="Volver atrás">
+                <i class="ri-arrow-left-line ri-2x"></i>
+              </button>
+              <div class="flex justify-between items-center">
+                <div>
+                  <h2 id="player-title" class="text-xl font-bold">Título</h2>
+                  <p class="text-sm text-gray-300 flex items-center gap-1"><i class="ri-star-fill text-accent"></i> ★★★★</p>
                 </div>
-                <span id="duration" class="text-sm text-neutral">3:45</span>
-              </div>
-              <div class="flex justify-center gap-4 mt-4">
-                <button class="text-white p-2 rounded-full hover:bg-secondary/20 ripple-effect" onclick="addToLibrary('player')" role="button" aria-label="Añadir a favoritos"><i class="ri-heart-line ri-xl"></i></button>
-                <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" onclick="toggleLyrics()" role="button" aria-label="Letras"><i class="ri-file-text-line ri-xl"></i></button>
-                <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" role="button" aria-label="Compartir"><i class="ri-share-forward-line ri-xl"></i></button>
-                <!-- Like -->
-                <button class="text-white p-2 rounded-full hover:bg-accent/20 ripple-effect like-btn" id="player-like" onclick="toggleLikePlayer()" role="button" aria-label="Dar like"><i class="ri-heart-line ri-xl"></i></button>
-                <!-- Player Comments Toggle -->
-                <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" id="toggle-player-comments" onclick="togglePlayerComments()" role="button" aria-label="Toggle comentarios en vivo"><i class="ri-chat-3-line ri-xl"></i></button>
+                <div class="flex gap-3">
+                  <button class="text-white p-2 rounded-full hover:bg-secondary/20 ripple-effect" onclick="addToList('player')" role="button" aria-label="Añadir a favoritos"><i class="ri-heart-line ri-xl"></i></button>
+                  <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" onclick="toggleSubtitles()" role="button" aria-label="Activar subtítulos"><i class="ri-subtitles-line ri-xl"></i></button>
+                  <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" role="button" aria-label="Compartir"><i class="ri-share-forward-line ri-xl"></i></button>
+                  <!-- Like -->
+                  <button class="text-white p-2 rounded-full hover:bg-secondary/20 ripple-effect like-btn" id="player-like" onclick="toggleLikePlayer()" role="button" aria-label="Dar like"><i class="ri-heart-line ri-xl"></i></button>
+                  <!-- Player Comments Toggle -->
+                  <button class="text-white p-2 rounded-full hover:bg-primary/20 ripple-effect" id="toggle-player-comments" onclick="togglePlayerComments()" role="button" aria-label="Toggle comentarios en vivo"><i class="ri-chat-3-line ri-xl"></i></button>
+                </div>
               </div>
             </div>
             <!-- Player Comments -->
@@ -1215,14 +1230,11 @@
                 <button class="btn-primary px-3 py-1 text-xs rounded" onclick="addPlayerComment()" role="button" aria-label="Enviar comentario en vivo">Enviar</button>
               </div>
             </div>
-            <button id="back-to-home" class="absolute top-4 left-4 text-white z-10 rounded-full p-2 hover:bg-primary/20 ripple-effect" role="button" aria-label="Volver atrás">
-              <i class="ri-arrow-left-line ri-2x"></i>
-            </button>
           </div>
         </div>
-        <!-- Clips View -->
-        <div id="clips-view" class="hidden-view">
-          <div id="clips-container">
+        <!-- Shorts View -->
+        <div id="shorts-view" class="hidden-view">
+          <div id="shorts-container">
           </div>
         </div>
         <!-- Community View -->
@@ -1240,15 +1252,15 @@
                 </div>
               </div>
               <div class="bg-card p-4 rounded-lg">
-                <h3 class="text-lg font-semibold mb-2">Eventos Musicales</h3>
-                <p class="text-sm">Próximo meetup: Debate sobre K-Pop. Únete al chat.</p>
+                <h3 class="text-lg font-semibold mb-2">Eventos Cine</h3>
+                <p class="text-sm">Próximo meetup: Debate sobre Marvel. Únete al chat.</p>
                 <button class="btn-primary mt-2 ripple-effect" onclick="showView('chat-view')" role="button" aria-label="Unirse al chat">Unirse</button>
               </div>
               <div class="bg-card p-4 rounded-lg">
                 <h3 class="text-lg font-semibold mb-2">Top Contribuidores</h3>
                 <ul class="space-y-1 text-sm">
-                  <li><span class="text-accent">MusicFan123</span> - 150 reseñas</li>
-                  <li><span class="text-accent">BeatMaster</span> - 89 reseñas</li>
+                  <li><span class="text-accent">CineFan123</span> - 150 reseñas</li>
+                  <li><span class="text-accent">MovieMaster</span> - 89 reseñas</li>
                 </ul>
               </div>
             </div>
@@ -1259,8 +1271,8 @@
           <div class="p-2">
             <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-chat-3-line text-accent"></i> Chat General</h1>
             <div id="chat-messages" class="space-y-2 mb-4 h-80 overflow-y-auto bg-card p-4 rounded-lg">
-              <div class="chat-message"><strong>Usuario1:</strong> ¡Acabo de escuchar ese nuevo álbum!</div>
-              <div class="chat-message"><strong>Usuario2:</strong> ¿Cuál? Cuéntame tus tracks fav...</div>
+              <div class="chat-message"><strong>Usuario1:</strong> ¡Acabo de ver esa serie nueva!</div>
+              <div class="chat-message"><strong>Usuario2:</strong> ¿Cuál? Cuéntame spoilers...</div>
               <div class="chat-message"><strong>Tú:</strong> (Tu último mensaje aquí)</div>
             </div>
             <div class="flex gap-2">
@@ -1275,47 +1287,26 @@
             <h1 class="text-2xl font-bold mb-4 flex items-center gap-2"><i class="ri-discuss-line text-warning"></i> Discusiones</h1>
             <div class="space-y-4" id="discussion-threads">
               <div class="discussion-thread">
-                <h4>¿Mejor álbum de 2025?</h4>
+                <h4>¿Mejor película de superhéroes?</h4>
                 <p>¡Vota y debate! 45 respuestas.</p>
-                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('¿Mejor álbum de 2025?')" role="button" aria-label="Comentar discusión">Comentar</button>
+                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('¿Mejor película de superhéroes?')" role="button" aria-label="Comentar discusión">Comentar</button>
               </div>
               <div class="discussion-thread">
-                <h4>Artistas underrated del año</h4>
+                <h4>Series underrated del 2025</h4>
                 <p>Comparte tus gems ocultas. 23 respuestas.</p>
-                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('Artistas underrated del año')" role="button" aria-label="Comentar discusión">Comentar</button>
+                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('Series underrated del 2025')" role="button" aria-label="Comentar discusión">Comentar</button>
               </div>
               <div class="discussion-thread">
-                <h4>Impacto de IA en la música</h4>
+                <h4>Impacto de IA en el cine</h4>
                 <p>¿Ayuda o perjudica? 12 respuestas.</p>
-                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('Impacto de IA en la música')" role="button" aria-label="Comentar discusión">Comentar</button>
+                <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('Impacto de IA en el cine')" role="button" aria-label="Comentar discusión">Comentar</button>
               </div>
             </div>
             <button class="btn-primary w-full mt-4 ripple-effect" onclick="createDiscussion()" role="button" aria-label="Crear nueva discusión">Nueva Discusión</button>
           </div>
         </div>
       </div>
-      <!-- Mini Player -->
-      <div class="mini-player" id="mini-player">
-        <div class="flex items-center gap-3 flex-1">
-          <img class="mini-art" id="mini-art" src="" alt="Art">
-          <div class="mini-info">
-            <p class="mini-title" id="mini-title">Título</p>
-            <p class="mini-artist" id="mini-artist">Artista</p>
-          </div>
-        </div>
-        <div class="mini-controls">
-          <button class="text-neutral" onclick="prevTrack()"><i class="ri-skip-back-mini-line"></i></button>
-          <button id="mini-play-pause" class="text-primary" onclick="togglePlay()"><i class="ri-play-mini-line"></i></button>
-          <button class="text-neutral" onclick="nextTrack()"><i class="ri-skip-forward-mini-line"></i></button>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="mini-progress">
-            <div class="mini-progress-fill" id="mini-progress-fill"></div>
-          </div>
-          <i class="ri-volume-2-line text-neutral ri-lg"></i>
-        </div>
-      </div>
-      <!-- Bottom Nav -->
+      <!-- Bottom Nav - Added Social -->
       <nav class="bottom-nav flex justify-around items-center fixed bottom-0 left-0 right-0 z-50">
         <button id="home-btn" class="flex flex-col items-center justify-center py-2 text-primary ripple-effect" role="button" aria-label="Ir a inicio">
           <i class="ri-home-5-fill ri-lg mb-1 animate-pulse-glow"></i><span class="text-xs">Inicio</span>
@@ -1323,11 +1314,11 @@
         <button id="search-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Buscar">
           <i class="ri-search-fill ri-lg mb-1"></i><span class="text-xs">Buscar</span>
         </button>
-        <button id="library-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Biblioteca">
-          <i class="ri-inbox-fill ri-lg mb-1"></i><span class="text-xs">Biblioteca</span>
+        <button id="watchlist-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Mi lista">
+          <i class="ri-bookmark-fill ri-lg mb-1"></i><span class="text-xs">Lista</span>
         </button>
-        <button id="clips-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Clips">
-          <i class="ri-video-fill ri-lg mb-1"></i><span class="text-xs">Clips</span>
+        <button id="shorts-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Shorts">
+          <i class="ri-video-fill ri-lg mb-1"></i><span class="text-xs">Shorts</span>
         </button>
         <button id="profile-btn" class="flex flex-col items-center justify-center py-2 text-gray-400 ripple-effect" role="button" aria-label="Perfil">
           <i class="ri-user-fill ri-lg mb-1"></i><span class="text-xs">Perfil</span>
@@ -1371,9 +1362,12 @@
               <div>
                 <h3 class="text-lg font-semibold mb-2" style="color: #f1f5f9;">Tema de Color</h3>
                 <div class="flex gap-2">
+                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 ripple-effect" onclick="changeTheme('purple')" role="button" aria-label="Tema púrpura"></button>
+                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 ripple-effect" onclick="changeTheme('blue')" role="button" aria-label="Tema azul"></button>
+                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 ripple-effect" onclick="changeTheme('pink')" role="button" aria-label="Tema rosa"></button>
                   <button class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 ripple-effect" onclick="changeTheme('green')" role="button" aria-label="Tema verde"></button>
-                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 ripple-effect" onclick="changeTheme('purple')" role="button" aria-label="Tema púrpura"></button>
-                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 ripple-effect" onclick="changeTheme('blue')" role="button" aria-label="Tema azul"></button>
+                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 ripple-effect" onclick="changeTheme('orange')" role="button" aria-label="Tema naranja"></button>
+                  <button class="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-rose-500 ripple-effect" onclick="changeTheme('red')" role="button" aria-label="Tema rojo"></button>
                 </div>
               </div>
               <div>
@@ -1392,6 +1386,10 @@
                 <span class="text-white">Modo Oscuro Mejorado</span>
               </label>
               <label class="flex items-center gap-2">
+                <input type="checkbox" id="kids-mode-toggle" class="rounded" />
+                <span class="text-white">Modo Niños</span>
+              </label>
+              <label class="flex items-center gap-2">
                 <input type="checkbox" id="high-contrast-toggle" class="rounded" />
                 <span class="text-white">Alto Contraste</span>
               </label>
@@ -1400,8 +1398,8 @@
                 <span class="text-white">Notificaciones</span>
               </label>
               <label class="flex items-center gap-2">
-                <input type="checkbox" id="lyrics-toggle" checked class="rounded" />
-                <span class="text-white">Letras por Defecto</span>
+                <input type="checkbox" id="subtitles-toggle" checked class="rounded" />
+                <span class="text-white">Subtítulos por Defecto</span>
               </label>
               <label class="flex items-center gap-2">
                 <input type="checkbox" id="chat-notify-toggle" class="rounded" />
@@ -1437,12 +1435,14 @@
       </div>
     </div>
     <script>
-      // Deezer API Config (Public, no key needed for basic use)
-      const DEEZER_BASE_URL = 'https://api.deezer.com';
+      // TMDB Config
+      const TMDB_API_KEY = 'c71d55c790adcb0fa9ea6ebcbc9a61a7';
+      const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+      const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300';
       // Globals
-      let currentTracks = [];
-      let currentTrackIndex = 0;
-      let isAlbum = false;
+      let currentEpisodes = [];
+      let currentEpisodeIndex = 0;
+      let isSeries = false;
       let startX = 0;
       let endX = 0;
       let currentProgress = {};
@@ -1450,9 +1450,9 @@
       let sliderInterval;
       const slides = 5;
       let likes = JSON.parse(localStorage.getItem('likes') || '{}');
-      let plays = JSON.parse(localStorage.getItem('plays') || '{}');
-      let clipsData = [];
-      let clipComments = {};
+      let views = JSON.parse(localStorage.getItem('views') || '{}');
+      let shortsData = [];
+      let shortComments = {};
       let comments = {};
       let currentMediaType = 'all'; // For media filter
       let walletBalance = parseInt(localStorage.getItem('walletBalance') || '0');
@@ -1460,27 +1460,23 @@
       let socialRatings = {}; // For social ratings
       let currentItemId = null;
       let currentType = null;
-      let audioPlayer = null;
-      let isPlaying = false;
-      let heroSlidesData = []; // For slider
       // DOMContentLoaded
       document.addEventListener("DOMContentLoaded", async function () {
-        audioPlayer = document.getElementById('audio-player');
         updateWalletUI();
         const loadFunctions = [
           loadHeroSlider,
           loadRecommendations,
           loadTrending,
-          loadPop,
-          loadRock,
-          loadTopCharts,
-          loadNewReleases,
-          loadElectronic,
-          loadHipHop,
+          loadAction,
+          loadDrama,
+          loadTopRated,
+          loadUpcoming,
+          loadComedy,
+          loadHorror,
           loadGenres,
-          loadCharts,
-          loadArtists,
-          loadClips,
+          loadNewsTMDB,
+          loadKidsContent,
+          loadShorts,
           loadCommunityPicks // New
         ];
         for (let loadFn of loadFunctions) {
@@ -1490,21 +1486,21 @@
             console.error(`Error loading ${loadFn.name}:`, e);
           }
         }
-        loadLibrary();
+        loadWatchlist();
         loadUserReviews();
         loadDiscussions();
-        loadContinueListening();
-        loadLyrics();
+        loadContinueWatching();
+        loadTrailers();
         initSlider();
         if (localStorage.getItem('user')) {
           showLoggedIn();
         }
-        // Nav
+        // Nav - Added social
         const navButtons = {
           'home-btn': 'home-view',
           'search-btn': 'search-view',
-          'library-btn': 'library-view',
-          'clips-btn': 'clips-view',
+          'watchlist-btn': 'watchlist-view',
+          'shorts-btn': 'shorts-view',
           'profile-btn': 'profile-view'
         };
         Object.entries(navButtons).forEach(([id, view]) => {
@@ -1513,16 +1509,16 @@
             if (view === 'search-view') {
               const query = document.getElementById('search-input').value;
               if (query.trim()) {
-                searchDeezer(query);
+                searchTMDB(query);
               } else {
-                document.getElementById('search-grid').innerHTML = '<div class="empty-search"><i class="ri-search-line ri-3x mb-2 block text-accent"></i><p>Busca tracks...</p></div>';
+                document.getElementById('search-grid').innerHTML = '<div class="empty-search"><i class="ri-search-line ri-3x mb-2 block text-accent"></i><p>Busca vibes...</p></div>';
               }
             }
           });
         });
-        // Search
-        document.getElementById('search-input').addEventListener('input', debounce(searchDeezer, 200));
-        // Saved query
+        // Search - Reduced debounce for live updates
+        document.getElementById('search-input').addEventListener('input', debounce(searchTMDB, 200));
+        // Saved query handling
         const savedQuery = localStorage.getItem('lastQuery');
         if (savedQuery) {
           document.getElementById('search-input').value = savedQuery;
@@ -1536,9 +1532,10 @@
         // Settings
         document.getElementById('settings-btn').addEventListener('click', () => document.getElementById('settings-modal').style.display = 'block');
         document.getElementById('dark-mode-toggle').addEventListener('change', toggleDarkMode);
+        document.getElementById('kids-mode-toggle').addEventListener('change', toggleKidsMode);
         document.getElementById('high-contrast-toggle').addEventListener('change', toggleHighContrast);
         document.getElementById('notifications-toggle').addEventListener('change', toggleNotifications);
-        document.getElementById('lyrics-toggle').addEventListener('change', toggleLyricsDefault);
+        document.getElementById('subtitles-toggle').addEventListener('change', toggleSubtitlesDefault);
         document.getElementById('chat-notify-toggle').addEventListener('change', toggleChatNotifications);
         document.getElementById('auto-slide-toggle').addEventListener('change', toggleAutoSlide);
         // Logout
@@ -1554,17 +1551,30 @@
         });
         // Player back
         document.getElementById('back-to-home').addEventListener('click', () => {
-          audioPlayer.pause();
+          document.getElementById('video-player').pause();
           showView('home-view');
           resetPlayer();
         });
-        // Preview close
+        // Player swipe
+        const playerContainer = document.getElementById('player-container');
+        playerContainer.addEventListener('touchstart', e => {
+          if (isSeries) {
+            startX = e.touches[0].clientX;
+          }
+        });
+        playerContainer.addEventListener('touchend', e => {
+          if (isSeries) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+          }
+        });
+        // Preview close outside
         document.addEventListener('click', (e) => {
           if (e.target.id === 'preview-modal') hidePreview();
         });
         updateCounts();
         document.getElementById('history-carousel').innerHTML = Array(5).fill().map(() =>
-          `<div class="album-art" style="background-image: url('https://via.placeholder.com/110x110/1DB954/FFFFFF?text=History');"></div>`
+          `<div class="movie-poster" style="background-image: url('https://via.placeholder.com/110x165/6366F1/FFFFFF?text=History');"></div>`
         ).join('');
         // Infinite scroll home
         let loading = false;
@@ -1574,7 +1584,7 @@
             loading = true;
             setTimeout(() => {
               const carousels = document.querySelectorAll('.carousel');
-              carousels.forEach(c => c.innerHTML += '<div class="album-art" style="background-image: ur[](https://via.placeholder.com/110x110/1DB954/FFFFFF?text=More);"></div>');
+              carousels.forEach(c => c.innerHTML += '<div class="movie-poster" style="background-image: ur[](https://via.placeholder.com/110x165/6366F1/FFFFFF?text=More);"></div>');
               loading = false;
             }, 1000);
           }
@@ -1583,12 +1593,6 @@
         const highContrast = localStorage.getItem('highContrast') === 'true';
         if (highContrast) document.body.classList.add('high-contrast');
         document.getElementById('high-contrast-toggle').checked = highContrast;
-        // Audio events
-        audioPlayer.addEventListener('timeupdate', updateProgress);
-        audioPlayer.addEventListener('ended', nextTrack);
-        audioPlayer.addEventListener('loadedmetadata', () => {
-          document.getElementById('duration').textContent = formatTime(audioPlayer.duration);
-        });
       });
       // Wallet Functions
       function updateWalletUI() {
@@ -1624,46 +1628,34 @@
           document.getElementById('paywall-section').classList.remove('hidden');
         }
       }
-      // Deezer API Fetch Function
-      async function fetchDeezer(endpoint, params = {}) {
-        const url = `${DEEZER_BASE_URL}${endpoint}?${new URLSearchParams(params)}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Deezer Error: ${res.status}`);
-        const json = await res.json();
-        return json.data || json; // Deezer wraps in 'data' for lists
-      }
-      // Hero Slider - Featured Albums (Adapted to Deezer)
+      // Hero Slider
       async function loadHeroSlider() {
         try {
-          const data = await fetchDeezer('/chart/0/albums', { limit: 5 });
-          heroSlidesData = data;
-          const heroSlides = data.map((album, index) => {
-            const artwork = album.cover_xl || album.cover_medium;
+          const data = await fetchTMDB('/movie/now_playing', { page: 1 });
+          const heroSlides = data.results.slice(0, 5).map((movie) => {
+            const backdrop = movie.backdrop_path ? `https://image.tmdb.org/t/p/original/${movie.backdrop_path}` : '';
             return `
-              <div class="slide" style="background-image: url('${artwork}');">
+              <div class="slide" style="background-image: url('${backdrop}');">
                 <div class="slide-overlay">
-                  <h2 class="slide-title">${album.title}</h2>
-                  <p class="slide-description">${album.artist.name} - ${album.release_date ? new Date(album.release_date).getFullYear() : 'N/A'}</p>
+                  <h2 class="slide-title">${movie.title}</h2>
+                  <p class="slide-description">${movie.overview.slice(0, 150)}${movie.overview.length > 150 ? '...' : ''}</p>
                   <div class="slide-actions">
-                    <button class="btn-hero ripple-effect" onclick="showDetails('${album.id}', 'album')" role="button" aria-label="Escuchar ahora"><i class="ri-play-fill"></i> Escuchar Ahora</button>
-                    <button class="btn-hero secondary ripple-effect" onclick="showPreview('${album.id}', 'album')" role="button" aria-label="Más info"><i class="ri-eye-line"></i> Más Info</button>
+                    <button class="btn-hero ripple-effect" onclick="unlockAndPlaySlider('${movie.id}', 'movie')" role="button" aria-label="Ver ahora"><i class="ri-play-fill"></i> Ver Ahora</button>
+                    <button class="btn-hero secondary ripple-effect" onclick="showPreview('${movie.id}', 'movie')" role="button" aria-label="Más info"><i class="ri-eye-line"></i> Más Info</button>
                   </div>
                 </div>
               </div>
             `;
           });
           document.getElementById('slider-track').innerHTML = heroSlides.join('');
-          updateSliderDots();
-          if (document.getElementById('auto-slide-toggle').checked) {
-            startSliderInterval();
-          }
+          window.heroSlides = data.results.slice(0, 5);
         } catch (e) { 
           console.error('Hero slider load error:', e); 
           document.getElementById('slider-track').innerHTML = `
-            <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080/1DB954/FFFFFF?text=Hero');">
+            <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080/6366F1/FFFFFF?text=Hero');">
               <div class="slide-overlay">
-                <h2 class="slide-title">MusicVibe</h2>
-                <p class="slide-description">Descubre álbumes y playlists increíbles con vibes únicas.</p>
+                <h2 class="slide-title">CineVibe</h2>
+                <p class="slide-description">Descubre películas y series increíbles con vibes únicas.</p>
                 <div class="slide-actions">
                   <button class="btn-hero ripple-effect" onclick="showView('search-view')" role="button" aria-label="Explorar"><i class="ri-play-fill"></i> Explorar</button>
                 </div>
@@ -1672,282 +1664,1016 @@
           `;
         }
       }
-      // Search Function (Adapted to Deezer)
-      async function searchDeezer(query) {
-        try {
-          const data = await fetchDeezer('/search', { q: query, limit: 20 });
-          const searchHTML = data.map(item => {
-            const type = item.type || 'track';
-            const artwork = item.cover_small || item.album?.cover_small || 'https://via.placeholder.com/100x100/1DB954/FFFFFF?text=?';
-            const title = item.title || item.album?.title;
-            const artist = item.artist?.name || 'Artista Desconocido';
-            return `
-              <div class="album-art" style="background-image: url('${artwork}');" onclick="showDetails('${item.id}', '${type}')">
-                <div class="art-overlay">
-                  <div class="overlay-top">
-                    <div class="overlay-top-left">
-                      <i class="ri-play-circle-line"></i>
-                      <span>${type}</span>
-                    </div>
-                    <div class="overlay-top-right like-btn ${likes[item.id] ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${item.id}')">
-                      <i class="ri-heart-line"></i>
-                    </div>
-                  </div>
-                  <div class="overlay-title">${title_short(title, 20)}</div>
-                </div>
-              </div>
-            `;
-          }).join('');
-          document.getElementById('search-grid').innerHTML = searchHTML;
-          localStorage.setItem('lastQuery', query);
-        } catch (e) {
-          console.error('Search error:', e);
-          document.getElementById('search-grid').innerHTML = '<div class="empty-search"><p>Error al buscar. Intenta de nuevo.</p></div>';
-        }
-      }
-      // loadRecommendations (Adapted to Deezer - Radio/Personalized)
-      async function loadRecommendations() {
-        try {
-          const data = await fetchDeezer('/radio/genre/0', { limit: 10 }); // Genre radio as recs
-          const recHTML = data.map((track) => createArt(track, 'track')).join('');
-          document.getElementById('recommendations-grid').innerHTML = recHTML;
-        } catch (e) {
-          console.error('Recommendations error:', e);
-          document.getElementById('recommendations-grid').innerHTML = '<div class="empty-search"><p>Cargando recomendaciones...</p></div>';
-        }
-      }
-      // loadTrending
-      async function loadTrending() {
-        try {
-          const data = await fetchDeezer('/chart/0/tracks', { limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('trending-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Trending error:', e);
-          document.getElementById('trending-carousel').innerHTML = '<div class="album-art" style="background-image: ur[](https://via.placeholder.com/110x110/1DB954/FFFFFF?text=Trend);"></div>';
-        }
-      }
-      // loadPop
-      async function loadPop() {
-        try {
-          const data = await fetchDeezer('/search', { q: 'pop', limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('pop-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Pop error:', e);
-        }
-      }
-      // loadRock
-      async function loadRock() {
-        try {
-          const data = await fetchDeezer('/search', { q: 'rock', limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('rock-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Rock error:', e);
-        }
-      }
-      // loadTopCharts
-      async function loadTopCharts() {
-        try {
-          const data = await fetchDeezer('/chart/0/tracks', { limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('top-charts-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Top Charts error:', e);
-        }
-      }
-      // loadNewReleases
-      async function loadNewReleases() {
-        try {
-          const data = await fetchDeezer('/chart/0/albums', { limit: 10 });
-          const html = data.map(album => createArt(album, 'album')).join('');
-          document.getElementById('new-releases-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('New Releases error:', e);
-        }
-      }
-      // loadElectronic
-      async function loadElectronic() {
-        try {
-          const data = await fetchDeezer('/search', { q: 'electronic', limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('electronic-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Electronic error:', e);
-        }
-      }
-      // loadHipHop
-      async function loadHipHop() {
-        try {
-          const data = await fetchDeezer('/search', { q: 'hip hop', limit: 10 });
-          const html = data.map(track => createArt(track, 'track')).join('');
-          document.getElementById('hiphop-carousel').innerHTML = html;
-        } catch (e) {
-          console.error('Hip-Hop error:', e);
-        }
-      }
-      // Helper to create album-art HTML (Adapted for Deezer fields)
-      function createArt(item, type) {
-        const artwork = item.cover_medium || item.album?.cover_medium || 'https://via.placeholder.com/110x110/1DB954/FFFFFF?text=?';
-        const title = (type === 'track' ? item.title : item.title || item.name) || 'Título Desconocido';
-        const subtitle = type === 'track' ? item.artist.name : item.artist?.name || 'Artista';
-        return `
-          <div class="album-art" style="background-image: url('${artwork}');" onclick="showDetails('${item.id}', '${type}')">
-            <div class="art-overlay">
-              <div class="overlay-top">
-                <div class="overlay-top-left">
-                  <i class="ri-${type === 'album' ? 'folder' : 'music-2'}-line"></i>
-                  <span>${type}</span>
-                </div>
-                <div class="overlay-top-right like-btn ${likes[item.id] ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${item.id}')">
-                  <i class="ri-heart-line"></i>
-                </div>
-              </div>
-              <div class="overlay-title">${title_short(title, 20)}</div>
-            </div>
-          </div>
-        `;
-      }
-      function title_short(title, maxLen) {
-        return title.length > maxLen ? title.substring(0, maxLen) + '...' : title;
-      }
-      // Slider Functions
       function initSlider() {
-        const track = document.getElementById('slider-track');
-        track.style.transform = `translateX(0%)`;
-      }
-      function updateSliderDots() {
         const dotsContainer = document.getElementById('slider-dots');
-        dotsContainer.innerHTML = heroSlidesData.map((_, index) => 
-          `<span class="dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></span>`
-        ).join('');
+        dotsContainer.innerHTML = Array(5).fill().map((_, i) => `<span class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})" role="button" aria-label="Ir al slide ${i+1}" tabindex="0"></span>`).join('');
+        startAutoSlide();
+        // Swipe
+        const sliderContainer = document.querySelector('.slider-container');
+        let sliderStartX = 0;
+        sliderContainer.addEventListener('touchstart', e => sliderStartX = e.touches[0].clientX);
+        sliderContainer.addEventListener('touchend', e => {
+          const sliderEndX = e.changedTouches[0].clientX;
+          const diff = sliderStartX - sliderEndX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
+          }
+        });
+        updateProgressBar();
       }
-      function goToSlide(index) {
-        currentSlide = index;
-        document.getElementById('slider-track').style.transform = `translateX(-${index * 100}%)`;
-        document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
-      }
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + heroSlidesData.length) % heroSlidesData.length;
-        goToSlide(currentSlide);
+      function goToSlide(n) {
+        currentSlide = n;
+        document.getElementById('slider-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+        document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+        resetAutoSlide();
+        updateProgressBar();
       }
       function nextSlide() {
-        currentSlide = (currentSlide + 1) % heroSlidesData.length;
+        currentSlide = (currentSlide + 1) % 5;
         goToSlide(currentSlide);
       }
-      function startSliderInterval() {
-        sliderInterval = setInterval(nextSlide, 4000);
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + 5) % 5;
+        goToSlide(currentSlide);
+      }
+      function startAutoSlide() {
+        if (document.getElementById('auto-slide-toggle').checked) {
+          sliderInterval = setInterval(nextSlide, 4000);
+        }
+      }
+      function resetAutoSlide() {
+        clearInterval(sliderInterval);
+        startAutoSlide();
       }
       function toggleAutoSlide() {
         if (document.getElementById('auto-slide-toggle').checked) {
-          startSliderInterval();
+          startAutoSlide();
         } else {
           clearInterval(sliderInterval);
         }
+        localStorage.setItem('autoSlide', document.getElementById('auto-slide-toggle').checked);
       }
-      // Player functions (Adapted for Deezer preview URLs)
-      function togglePlay() {
-        if (isPlaying) {
-          audioPlayer.pause();
-          document.getElementById('play-pause-btn').innerHTML = '<i class="ri-play-fill ri-2x"></i>';
-          document.getElementById('mini-play-pause').innerHTML = '<i class="ri-play-mini-line"></i>';
-        } else {
-          audioPlayer.play();
-          document.getElementById('play-pause-btn').innerHTML = '<i class="ri-pause-fill ri-2x"></i>';
-          document.getElementById('mini-play-pause').innerHTML = '<i class="ri-pause-mini-line"></i>';
-        }
-        isPlaying = !isPlaying;
-        document.getElementById('mini-player').classList.remove('hidden');
-      }
-      function updateProgress() {
-        if (audioPlayer.duration) {
-          const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-          document.getElementById('progress-fill').style.width = `${progress}%`;
-          document.getElementById('mini-progress-fill').style.width = `${progress}%`;
-          document.getElementById('current-time').textContent = formatTime(audioPlayer.currentTime);
+      function updateProgressBar() {
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+          progressBar.style.animation = 'none';
+          void progressBar.offsetWidth;
+          progressBar.style.animation = 'data-viz 4s linear infinite';
         }
       }
-      function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      function unlockAndPlaySlider(id, type) {
+        window.tempItem = { id, type };
+        unlockAndPlay();
       }
-      function seekTrack(e) {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
-        audioPlayer.currentTime = pos * audioPlayer.duration;
+      // Auth
+      function handleLogin(e) {
+        e.preventDefault();
+        const email = e.target.querySelector('input[type="email"]').value;
+        const user = { email, name: email.split('@')[0] };
+        localStorage.setItem('user', JSON.stringify(user));
+        showLoggedIn();
+        document.getElementById('login-modal').style.display = 'none';
       }
-      function nextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % currentTracks.length;
-        playTrack(currentTracks[currentTrackIndex]);
+      function handleRegister(e) {
+        e.preventDefault();
+        const name = e.target.querySelector('input[type="text"]').value;
+        const email = e.target.querySelector('input[type="email"]').value;
+        const user = { name, email };
+        localStorage.setItem('user', JSON.stringify(user));
+        showLoggedIn();
+        document.getElementById('register-modal').style.display = 'none';
+        alert('¡Cuenta creada! Bienvenido a CineVibe.');
       }
-      function prevTrack() {
-        currentTrackIndex = (currentTrackIndex - 1 + currentTracks.length) % currentTracks.length;
-        playTrack(currentTracks[currentTrackIndex]);
+      function showLoggedIn() {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        document.getElementById('user-welcome').textContent = `¡Hola, ${user.name}!`;
+        document.getElementById('user-welcome').classList.remove('hidden');
+        document.getElementById('login-btn').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        document.getElementById('profile-name').textContent = user.name;
+        document.getElementById('user-rating-section').classList.remove('hidden');
       }
-      function playTrack(track) {
-        audioPlayer.src = track.preview || 'https://example.com/sample.mp3'; // Deezer preview URL
-        document.getElementById('player-title').textContent = track.title;
-        document.getElementById('mini-title').textContent = track.title;
-        document.getElementById('player-art').src = track.album.cover_medium;
-        document.getElementById('mini-art').style.backgroundImage = `url('${track.album.cover_medium}')`;
-        document.getElementById('mini-artist').textContent = track.artist.name;
-        togglePlay();
-        currentTracks = [track]; // For single track; extend for playlists
+      function handleLogout() {
+        localStorage.removeItem('user');
+        document.getElementById('user-welcome').classList.add('hidden');
+        document.getElementById('login-btn').classList.remove('hidden');
+        document.getElementById('logout-btn').classList.add('hidden');
+        document.getElementById('user-rating-section').classList.add('hidden');
       }
-      // showDetails: Fetch /album/{id} or /track/{id}, populate with Deezer data
-      async function showDetails(id, type) {
+      function showRegister() {
+        document.getElementById('login-modal').style.display = 'none';
+        document.getElementById('register-modal').style.display = 'block';
+      }
+      function showLogin() {
+        document.getElementById('register-modal').style.display = 'none';
+        document.getElementById('login-modal').style.display = 'block';
+      }
+      // Theme & Font
+      function changeTheme(theme) {
+        document.body.className = document.body.className.replace(/theme-\w+/g, '') + ` theme-${theme}`;
+        localStorage.setItem('theme', theme);
+      }
+      function changeFont(font) {
+        document.body.className = document.body.className.replace(/\w+-font/g, '') + ` ${font}`;
+        const fontMap = { inter: 'Inter', geist: 'Geist', proxima: 'Proxima Nova', outfit: 'Outfit', bebas: 'Bebas Neue', poppins: 'Poppins' };
+        document.body.style.fontFamily = `'${fontMap[font]}', sans-serif`;
+        localStorage.setItem('font', font);
+      }
+      // Settings
+      function toggleDarkMode() { 
+        document.body.classList.toggle('dark-enhanced');
+        localStorage.setItem('darkMode', document.getElementById('dark-mode-toggle').checked);
+      }
+      function toggleKidsMode() {
+        document.body.classList.toggle('kids-mode');
+        localStorage.setItem('kidsMode', document.getElementById('kids-mode-toggle').checked);
+      }
+      function toggleHighContrast() {
+        document.body.classList.toggle('high-contrast');
+        localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+      }
+      function toggleNotifications() { console.log('Notifications toggled'); }
+      function toggleSubtitlesDefault() { console.log('Subtitles default toggled'); }
+      function toggleChatNotifications() { console.log('Chat notifications toggled'); }
+      function clearData() {
+        if (confirm('¿Borrar watchlist, reseñas y descargas?')) {
+          localStorage.clear();
+          loadWatchlist();
+          loadUserReviews();
+          loadContinueWatching();
+          updateCounts();
+          walletBalance = 0;
+          updateWalletUI();
+        }
+      }
+      function showNotifications() { alert('Notificación: ¡Nueva serie disponible!'); }
+      // Voice Search
+      function startVoiceSearch() {
+        if (!('webkitSpeechRecognition' in window)) {
+          alert('Búsqueda por voz no soportada en este navegador.');
+          return;
+        }
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'es-ES';
+        recognition.onresult = (e) => {
+          const query = e.results[0][0].transcript;
+          document.getElementById('search-input').value = query;
+          searchTMDB(query);
+        };
+        recognition.onerror = () => alert('Error en reconocimiento de voz.');
+        recognition.start();
+      }
+      // Quiz
+      function startQuiz() {
+        const questions = [
+          { q: "¿Mejor director?", options: ["Spielberg", "Nolan", "Tarantino"], ans: 1 },
+          { q: "¿Película icónica?", options: ["Inception", "Pulp Fiction", "E.T."], ans: 0 }
+        ];
+        const score = Math.floor(Math.random() * 2) + 1;
+        alert(`¡Quiz completado! Puntaje: ${score}/2. ¡Sigue aprendiendo cine!`);
+      }
+      // Quick Share
+      function quickShare() {
+        alert('¡Comparte CineVibe con amigos! URL: ' + window.location.href);
+      }
+      // Offline
+      function downloadItem() {
+        const badge = document.getElementById('offline-badge');
+        badge.classList.toggle('hidden');
+        localStorage.setItem(`download-${window.currentItem.id}`, !badge.classList.contains('hidden'));
+        alert(badge.classList.contains('hidden') ? 'Descarga removida' : 'Descargando...');
+      }
+      function toggleOffline() {
+        alert('Gestión de descargas offline simulada.');
+      }
+      // TMDB
+      async function fetchTMDB(endpoint, params = {}) {
+        const url = `${TMDB_BASE_URL}${endpoint}?api_key=${TMDB_API_KEY}&language=es-ES&${new URLSearchParams(params)}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`TMDB Error: ${res.status}`);
+        return res.json();
+      }
+      // Likes
+      function toggleLike(id, type = 'global') {
+        if (!likes[id]) likes[id] = { count: 0, liked: false };
+        likes[id].liked = !likes[id].liked;
+        likes[id].count += likes[id].liked ? 1 : -1;
+        localStorage.setItem('likes', JSON.stringify(likes));
+        updateLikeUI(id, type);
+      }
+      function updateLikeUI(id, type) {
+        const likeEl = document.getElementById(`${type}-like`);
+        const countEl = document.getElementById(`${type}-likes`);
+        if (likeEl && countEl) {
+          likeEl.classList.toggle('liked', likes[id]?.liked);
+          countEl.textContent = `${likes[id]?.count || 0} likes`;
+        }
+      }
+      function toggleLikeDetails() { toggleLike(window.currentItem.id, 'details'); }
+      function toggleLikePlayer() { toggleLike(window.currentItem.id, 'player'); }
+      function toggleShortLike(index) {
+        const id = shortsData[index].id;
+        toggleLike(id);
+        const likeEl = document.querySelector(`#shorts-container .short-item:nth-child(${index + 1}) .short-like.ri-heart-line`);
+        if (likeEl) likeEl.classList.toggle('liked', likes[id]?.liked);
+      }
+      // Vistas
+      function incrementView(id) {
+        views[id] = (views[id] || 0) + 1;
+        localStorage.setItem('views', JSON.stringify(views));
+      }
+      // Media Type Filter
+      async function filterMediaType(type) {
+        currentMediaType = type;
+        document.querySelectorAll('.media-type-chip').forEach(c => c.classList.remove('active'));
+        event.target.classList.add('active');
         try {
-          const data = await fetchDeezer(`/${type}/${id}`);
-          window.currentItem = { id, type, data };
-          // Populate details-view with data.title, data.artist.name, etc.
-          document.getElementById('details-title').textContent = data.title || data.name;
-          document.getElementById('details-poster').src = data.cover_medium || data.picture_medium;
-          document.getElementById('details-backdrop').style.backgroundImage = `url('${data.cover_xl || data.picture_xl || data.cover_medium}')`;
-          document.getElementById('details-overview').textContent = data.overview || `Explora ${type === 'track' ? 'esta canción' : 'este álbum'} de ${data.artist ? data.artist.name : 'Artista'}.`;
-          document.getElementById('details-release').textContent = data.release_date ? new Date(data.release_date).getFullYear() : 'N/A';
-          document.getElementById('details-duration').textContent = data.duration ? formatTime(data.duration / 1000) : 'N/A';
-          document.getElementById('details-rating').querySelector('span').textContent = (data.rating || 0).toFixed(1);
-          document.getElementById('details-likes').textContent = `${data.nb_fan || 0} fans`;
-          document.getElementById('details-plays').textContent = `${data.rank || 0} vistas`;
-          // Tabs
-          const tabs = ['overview', 'tracks', 'reviews', 'comments', 'similar'];
-          document.getElementById('details-tabs').innerHTML = tabs.map(tab => 
-            `<button class="tab-btn ${tab === 'overview' ? 'active' : ''}" onclick="switchTab('${tab}')">${tab.charAt(0).toUpperCase() + tab.slice(1)}</button>`
-          ).join('');
-          // Tracks for album
-          if (type === 'album' && data.tracks) {
-            document.getElementById('tracks-list').innerHTML = data.tracks.data.map(track => `
-              <div class="track-item" onclick="playTrack(${JSON.stringify(track)})">
-                <div class="flex-1">
-                  <p class="font-medium">${track.title}</p>
-                  <p class="text-sm text-neutral">${track.artist.name}</p>
-                </div>
-                <span>${formatTime(track.duration / 1000)}</span>
-              </div>
-            `).join('');
-          }
-          // Similar
-          const similarData = await fetchDeezer(`/artist/${data.artist.id}/top?limit=5`);
-          document.getElementById('similar-carousel').innerHTML = similarData.map(s => createArt(s, 'track')).join('');
-          showView('details-view');
-          showTab('overview');
+          await loadRecommendations();
+          await loadTrending();
+          await loadAction();
+          await loadDrama();
+          await loadTopRated();
+          await loadUpcoming();
+          await loadComedy();
+          await loadHorror();
+          filterByGenre(0); // Reset genres
         } catch (e) {
-          console.error('Details error:', e);
+          console.error('Filter media type error:', e);
+        }
+      }
+      // Genre Filter with Media Type
+      async function filterByGenre(genreId) {
+        document.querySelectorAll('#discovery-chips .genre-chip').forEach(c => c.classList.remove('active'));
+        event.target.classList.add('active');
+        if (genreId === 0) {
+          loadRecommendations();
+          return;
+        }
+        try {
+          let endpoint = '/discover/';
+          let params = { with_genres: genreId, page: 1 };
+          let mediaTypeForPoster = 'movie'; // default
+          if (currentMediaType === 'movie') {
+            endpoint += 'movie';
+          } else if (currentMediaType === 'tv') {
+            endpoint += 'tv';
+            mediaTypeForPoster = 'tv';
+          } else {
+            endpoint += 'movie';
+          }
+          const data = await fetchTMDB(endpoint, params);
+          const grid = document.getElementById('recommendations-grid');
+          grid.innerHTML = data.results.slice(0, 6).map(item => createPoster(item, mediaTypeForPoster)).join('');
+        } catch (e) { 
+          console.error('Filter error:', e); 
+          document.getElementById('recommendations-grid').innerHTML = '<div class="empty-search"><p>Error al cargar género. Intenta de nuevo.</p></div>';
+        }
+      }
+      // Recommendations fixed for media type
+      async function loadRecommendations() {
+        const baseParams = { sort_by: 'popularity.desc', page: 1 };
+        let data, posterType;
+        try {
+          if (currentMediaType === 'movie') {
+            data = await fetchTMDB('/discover/movie', baseParams);
+            posterType = 'movie';
+          } else if (currentMediaType === 'tv') {
+            data = await fetchTMDB('/discover/tv', baseParams);
+            posterType = 'tv';
+          } else {
+            const movieData = await fetchTMDB('/discover/movie', baseParams);
+            const tvData = await fetchTMDB('/discover/tv', baseParams);
+            data = { results: [...movieData.results.slice(0,3), ...tvData.results.slice(0,3)] };
+            // For mixed, determine type in createPoster
+          }
+          const grid = document.getElementById('recommendations-grid');
+          if (currentMediaType === 'all') {
+            grid.innerHTML = data.results.map(item => createPoster(item, item.title ? 'movie' : 'tv')).join('');
+          } else {
+            grid.innerHTML = data.results.slice(0, 6).map(item => createPoster(item, posterType)).join('');
+          }
+        } catch (e) {
+          console.error('Recommendations load error:', e);
+          document.getElementById('recommendations-grid').innerHTML = '<div class="empty-search"><p>No se pudieron cargar recomendaciones. Verifica tu conexión.</p></div>';
+        }
+      }
+      // Trending fixed
+      async function loadTrending() {
+        try {
+          const baseParams = { page: 1 };
+          const data = await fetchTMDB('/trending/all/week', baseParams);
+          let filteredResults = data.results;
+          if (currentMediaType !== 'all') {
+            filteredResults = data.results.filter(item => item.media_type === currentMediaType);
+          }
+          document.getElementById('trending-carousel').innerHTML = filteredResults.slice(0, 10).map(item => createPoster(item, item.media_type)).join('');
+        } catch (e) {
+          console.error('Trending load error:', e);
+          document.getElementById('trending-carousel').innerHTML = Array(10).fill().map(() => `<div class="movie-poster" style="background-image: url('https://via.placeholder.com/115x170/6366F1/FFFFFF?text=Trending');"></div>`).join('');
+        }
+      }
+      async function loadAction() {
+        if (currentMediaType === 'tv') return; // Skip for TV filter
+        try {
+          const data = await fetchTMDB('/discover/movie', { with_genres: 28, sort_by: 'popularity.desc' });
+          document.getElementById('action-carousel').innerHTML = data.results.slice(0, 8).map(item => createPoster(item, 'movie')).join('');
+        } catch (e) {
+          console.error('Action load error:', e);
+        }
+      }
+      async function loadDrama() {
+        if (currentMediaType === 'movie') return; // Skip for movie filter
+        try {
+          const data = await fetchTMDB('/discover/tv', { with_genres: 18, sort_by: 'popularity.desc' });
+          document.getElementById('drama-carousel').innerHTML = data.results.slice(0, 8).map(item => createPoster(item, 'tv')).join('');
+        } catch (e) {
+          console.error('Drama load error:', e);
+        }
+      }
+      async function loadTopRated() {
+        if (currentMediaType === 'tv') return;
+        try {
+          const data = await fetchTMDB('/movie/top_rated', { page: 1 });
+          document.getElementById('top-rated-carousel').innerHTML = data.results.slice(0, 10).map(item => createPoster(item, 'movie')).join('');
+        } catch (e) {
+          console.error('Top rated load error:', e);
+        }
+      }
+      async function loadUpcoming() {
+        if (currentMediaType === 'tv') return;
+        try {
+          const data = await fetchTMDB('/movie/upcoming', { page: 1 });
+          document.getElementById('upcoming-carousel').innerHTML = data.results.slice(0, 10).map(item => createPoster(item, 'movie')).join('');
+        } catch (e) {
+          console.error('Upcoming load error:', e);
+        }
+      }
+      async function loadComedy() {
+        if (currentMediaType === 'tv') return;
+        try {
+          const data = await fetchTMDB('/discover/movie', { with_genres: 35, sort_by: 'popularity.desc' });
+          document.getElementById('comedy-carousel').innerHTML = data.results.slice(0, 8).map(item => createPoster(item, 'movie')).join('');
+        } catch (e) {
+          console.error('Comedy load error:', e);
+        }
+      }
+      async function loadHorror() {
+        if (currentMediaType === 'tv') return;
+        try {
+          const data = await fetchTMDB('/discover/movie', { with_genres: 27, sort_by: 'popularity.desc' });
+          document.getElementById('horror-carousel').innerHTML = data.results.slice(0, 8).map(item => createPoster(item, 'movie')).join('');
+        } catch (e) {
+          console.error('Horror load error:', e);
+        }
+      }
+      async function loadGenres() {
+        try {
+          const movieGenres = await fetchTMDB('/genre/movie/list');
+          const tvGenres = await fetchTMDB('/genre/tv/list');
+          const allGenres = [...movieGenres.genres, ...tvGenres.genres].filter((g, i, arr) => arr.findIndex(g2 => g2.id === g.id) === i);
+          document.getElementById('genres-grid').innerHTML = allGenres.slice(0, 15).map(genre => `
+            <div class="genre-card" onclick="loadByGenre(${genre.id}, '${genre.name}')" role="button" aria-label="Explorar ${genre.name}">
+              <i class="ri-film-line ri-2x text-primary mb-2"></i>
+              <h3 class="font-semibold">${genre.name}</h3>
+            </div>
+          `).join('');
+        } catch (e) {
+          console.error('Genres load error:', e);
+          document.getElementById('genres-grid').innerHTML = '<div class="empty-search"><p>Error al cargar géneros.</p></div>';
+        }
+      }
+      // Community Picks - Simulated Trakt popular lists
+      async function loadCommunityPicks() {
+        // Simulated data for social picks
+        const picks = [
+          { title: 'Top Acción 2025', id: 1, type: 'movie', poster: 'https://via.placeholder.com/115x170/EC4899/FFFFFF?text=Acción' },
+          { title: 'Series de Culto', id: 2, type: 'tv', poster: 'https://via.placeholder.com/115x170/3B82F6/FFFFFF?text=Series' },
+          { title: 'Recomendado por Amigos', id: 3, type: 'movie', poster: 'https://via.placeholder.com/115x170/10B981/FFFFFF?text=Amigos' }
+        ];
+        document.getElementById('community-picks-carousel').innerHTML = picks.map(item => createPoster(item, item.type)).join('');
+      }
+      // Search - Ensured live update
+      async function searchTMDB(query) {
+        const resultsEl = document.getElementById('search-results');
+        const gridEl = document.getElementById('search-grid');
+        localStorage.setItem('lastQuery', query);
+        resultsEl.classList.add('active'); // Force active
+        if (!query.trim()) {
+          gridEl.innerHTML = '<div class="empty-search"><i class="ri-search-line ri-3x mb-2 block text-accent"></i><p>Busca vibes...</p></div>';
+          return;
+        }
+        try {
+          const data = await fetchTMDB('/search/multi', { query, page: 1 });
+          if (data.results.length === 0) {
+            gridEl.innerHTML = `<div class="empty-search"><p>No results for "${query}", try again.</p></div>`;
+          } else {
+            gridEl.innerHTML = data.results.slice(0, 15).map(item => createPoster(item, item.media_type, true)).join('');
+          }
+        } catch (e) {
+          console.error('Search error:', e);
+          gridEl.innerHTML = '<div class="empty-search"><p>Error conexión, retry.</p></div>';
+        }
+      }
+      function createPoster(item, type, isSearch = false) {
+        const id = item.id;
+        const title = item.title || item.name || 'Sin título';
+        const poster = item.poster_path ? `${IMAGE_BASE_URL}${item.poster_path}` : 'https://via.placeholder.com/110x165/6366F1/FFFFFF?text=No+Imagen';
+        const onclick = isSearch ? `onclick="showDetails(${id}, '${type}');"` : `onmouseenter="showPreview(${id}, '${type}')" onmouseleave="hidePreview()" onclick="showDetails(${id}, '${type}');"`;
+        const likeId = `${type}-${id}`;
+        const likeCount = likes[id]?.count || 0;
+        const viewCount = views[id] || Math.floor(Math.random() * 1000000);
+        const trailerKey = ''; // Fetch in preview
+        return `
+          <div class="movie-poster ripple-effect" style="background-image: url('${poster}');" data-title="${title}" data-trailer="${trailerKey}" data-desc="${item.overview.slice(0,100)}" ${onclick}>
+            <div class="poster-overlay">
+              <div class="overlay-top">
+                <div class="overlay-top-left">
+                  <i class="ri-heart-line like-btn ${likes[id]?.liked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike(${id}, '${likeId}')" role="button" aria-label="Like" tabindex="0"></i>
+                  <span>${likeCount}</span>
+                </div>
+                <div class="overlay-top-right">
+                  <i class="ri-eye-line"></i>
+                  <span>${viewCount.toLocaleString()}</span>
+                </div>
+              </div>
+              <div class="overlay-title">${title}</div>
+            </div>
+          </div>`;
+      }
+      async function loadByGenre(genreId, genreName) {
+        try {
+          let endpoint = '/discover/';
+          let params = { with_genres: genreId, page: 1 };
+          if (currentMediaType !== 'all') {
+            endpoint += currentMediaType;
+            params = { ...params };
+          } else {
+            endpoint += 'movie'; // default
+          }
+          const data = await fetchTMDB(endpoint, params);
+          document.getElementById('genre-title').textContent = `${genreName} - Resultados`;
+          const posterType = currentMediaType !== 'all' ? currentMediaType : 'movie';
+          document.getElementById('genre-carousel').innerHTML = data.results.slice(0, 10).map(item => createPoster(item, posterType)).join('');
+          document.getElementById('genre-results').classList.remove('hidden');
+        } catch (e) {
+          alert('Error al cargar género: ' + e.message);
+        }
+      }
+      async function showDetails(id, type) {
+        incrementView(id);
+        currentItemId = id;
+        currentType = type;
+        const endpoint = type === 'movie' ? `/movie/${id}` : `/tv/${id}`;
+        try {
+          const data = await fetchTMDB(endpoint);
+          document.getElementById('details-title').textContent = data.title || data.name;
+          document.getElementById('details-release').textContent = data.release_date || data.first_air_date || 'N/A';
+          document.getElementById('details-runtime').textContent = data.runtime ? `${data.runtime}m` : (data.episode_run_time ? `${data.episode_run_time[0]}m` : 'N/A');
+          document.getElementById('details-rating').innerHTML = `★${data.vote_average ? (data.vote_average / 2).toFixed(1) : 0}`;
+          const fullOverview = data.overview;
+          const overviewEl = document.getElementById('details-overview');
+          if (fullOverview.length > 200) {
+            overviewEl.innerHTML = `${fullOverview.slice(0, 200)}... <button class="read-more-btn" onclick="toggleFullDesc(this)">Leer más</button>`;
+            overviewEl.dataset.full = fullOverview;
+          } else {
+            overviewEl.textContent = fullOverview;
+          }
+          document.getElementById('details-poster').src = data.poster_path ? `${IMAGE_BASE_URL}${data.poster_path}` : '';
+          document.getElementById('details-backdrop').style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${data.backdrop_path || ''}')`;
+          updateLikeUI(id, 'details');
+          document.getElementById('details-views').textContent = `${(views[id] || 0).toLocaleString()} vistas`;
+          // Tabs
+          const tabsContainer = document.getElementById('details-tabs');
+          tabsContainer.innerHTML = `
+            <button class="tab-btn active" data-tab="overview">Resumen</button>
+            <button class="tab-btn" data-tab="cast">Elenco</button>
+            <button class="tab-btn" data-tab="reviews">Reseñas</button>
+            <button class="tab-btn" data-tab="comments">Comentarios</button>
+            <button class="tab-btn" data-tab="similar">Similar</button>
+          `;
+          if (type === 'tv') {
+            tabsContainer.innerHTML += `<button class="tab-btn" data-tab="episodes">Episodios</button>`;
+          }
+          // Tab listeners
+          tabsContainer.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              tabsContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+              e.target.classList.add('active');
+              const tab = e.target.dataset.tab;
+              document.querySelectorAll('.tab-section').forEach(s => s.classList.add('hidden'));
+              document.getElementById(`${tab}-section`).classList.remove('hidden');
+            });
+          });
+          // Load sections
+          loadReviews(id, type);
+          loadComments(id);
+          renderComments(id, 'comments-list');
+          const credits = await fetchTMDB(`${endpoint}/credits`);
+          document.getElementById('cast-list').innerHTML = credits.cast.slice(0, 6).map(person => `
+            <div class="text-center min-w-[80px]">
+              <img src="${person.profile_path ? `${IMAGE_BASE_URL}${person.profile_path}` : 'https://via.placeholder.com/60x80/6366F1/FFFFFF?text=U'}" alt="${person.name}" class="w-15 h-20 rounded mx-auto mb-1" />
+              <p class="text-xs">${person.name.split(' ').slice(-1)[0]}</p>
+              <p class="text-xs text-gray-400">${person.character}</p>
+            </div>
+          `).join('');
+          const similar = await fetchTMDB(`${endpoint}/similar`, { page: 1 });
+          document.getElementById('similar-carousel').innerHTML = similar.results.slice(0, 10).map(item => createPoster(item, type)).join('');
+          // Episodes for TV
+          if (type === 'tv') {
+            currentProgress = JSON.parse(localStorage.getItem(`progress-${id}`) || '{}');
+            const seasons = data.seasons;
+            let seasonOptions = seasons.map(s => `<option value="${s.season_number}">${s.name || `Temporada ${s.season_number}`}</option>`).join('');
+            document.getElementById('season-select').innerHTML = seasonOptions;
+            document.getElementById('season-select').value = 1;
+            document.getElementById('season-select').onchange = (e) => loadSeasonEpisodes(id, e.target.value);
+            await loadSeasonEpisodes(id, 1);
+          } else {
+            document.getElementById('episodes-tab-section').classList.add('hidden');
+          }
+          showView('details-view');
+          window.currentItem = { id, type, data };
+          const itemKey = `${type}-${id}`;
+          if (!unlockedItems[itemKey]) {
+            document.getElementById('paywall-section').classList.remove('hidden');
+          }
+        } catch (e) {
+          console.error('Details load error:', e);
           alert('Error al cargar detalles. Intenta de nuevo.');
         }
       }
-      function switchTab(tab) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        document.querySelectorAll('.tab-section').forEach(sec => sec.classList.add('hidden'));
-        document.getElementById(`${tab}-section`).classList.remove('hidden');
+      async function loadSeasonEpisodes(id, seasonNum) {
+        const endpoint = `/tv/${id}/season/${seasonNum}`;
+        try {
+          const seasons = await fetchTMDB(endpoint);
+          const episodesList = seasons.episodes.slice(0, 10).map(ep => {
+            const progress = currentProgress[ep.episode_number] || 0;
+            return `
+              <div class="episode-item">
+                <div class="w-12 h-7 bg-gray-600 rounded flex items-center justify-center">${ep.episode_number}</div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium">${ep.name}</p>
+                  <p class="text-xs text-gray-400">${ep.overview.slice(0, 80)}...</p>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: ${progress}%"></div>
+                </div>
+                <button class="btn-primary text-xs px-4 py-1 ripple-effect" onclick="playEpisode(${id}, ${ep.episode_number}, '${ep.name}')" role="button" aria-label="Reproducir episodio ${ep.episode_number}"><i class="ri-play-fill"></i></button>
+              </div>
+            `;
+          }).join('');
+          document.getElementById('episodes-list').innerHTML = episodesList;
+        } catch (e) {
+          console.error('Load season episodes error:', e);
+        }
       }
-      function showTab(tab) {
-        switchTab(tab);
+      // Comments Global (General)
+      function loadComments(id) {
+        comments[id] = JSON.parse(localStorage.getItem(`comments-${id}`) || '[]');
       }
-      // Debounce helper
+      function saveComments(id) {
+        localStorage.setItem(`comments-${id}`, JSON.stringify(comments[id]));
+      }
+      function renderComments(id, containerId) {
+        const list = document.getElementById(containerId);
+        const reversed = comments[id].slice(-10).reverse();
+        list.innerHTML = reversed.map((c, globalIdx) => {
+          const localIdx = comments[id].length - 1 - globalIdx;
+          return `
+            <div class="comment-item">
+              <header><span>${c.user}</span><span>${c.date}</span></header>
+              <p>${c.text}</p>
+              <div class="likes-flex">
+                <i class="ri-heart-line text-sm ${c.liked ? 'text-secondary' : ''}" onclick="toggleCommentLike(${id}, ${localIdx})" role="button" aria-label="${c.liked ? 'Unlike' : 'Like'} comentario" tabindex="0"></i>
+                <span>${c.likes} vibes</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+      function addComment() {
+        const text = document.getElementById('comment-input').value.trim();
+        if (!text) return alert('Escribe algo.');
+        const user = JSON.parse(localStorage.getItem('user') || '{}').name || 'Anónimo';
+        const id = window.currentItem.id;
+        loadComments(id);
+        comments[id].push({ user, text, likes: 0, liked: false, date: new Date().toISOString().split('T')[0] });
+        saveComments(id);
+        renderComments(id, 'comments-list');
+        document.getElementById('comment-input').value = '';
+        alert('¡Comentario añadido!');
+      }
+      function toggleCommentLike(id, idx) {
+        loadComments(id);
+        const c = comments[id][idx];
+        c.liked = !c.liked;
+        c.likes += c.liked ? 1 : -1;
+        saveComments(id);
+        renderComments(id, 'comments-list');
+      }
+      function renderPlayerComments(id) {
+        loadComments(id);
+        const list = document.getElementById('player-comments-list');
+        const reversed = comments[id].slice(-5).reverse();
+        list.innerHTML = reversed.map((c, globalIdx) => {
+          const localIdx = comments[id].length - 1 - globalIdx;
+          return `
+            <div class="player-comment-item">
+              <strong>${c.user}:</strong> ${c.text}
+              <div class="likes-flex">
+                <i class="ri-heart-line text-xs ${c.liked ? 'text-secondary' : ''}" onclick="toggleCommentLike(${id}, ${localIdx})" role="button" aria-label="${c.liked ? 'Unlike' : 'Like'}"></i>
+                <span class="text-xs text-neutral">${c.likes}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+      function addPlayerComment() {
+        const text = document.getElementById('player-comment-input').value.trim();
+        if (!text) return alert('Escribe algo.');
+        const user = JSON.parse(localStorage.getItem('user') || '{}').name || 'Anónimo';
+        const id = window.currentItem.id;
+        loadComments(id);
+        comments[id].push({ user, text, likes: 0, liked: false, date: new Date().toISOString().split('T')[0] });
+        saveComments(id);
+        renderPlayerComments(id);
+        document.getElementById('player-comment-input').value = '';
+      }
+      function togglePlayerComments() {
+        const commentsEl = document.getElementById('player-comments');
+        const btn = document.getElementById('toggle-player-comments');
+        const icon = btn.querySelector('i');
+        commentsEl.classList.toggle('hidden');
+        commentsEl.classList.toggle('show');
+        icon.classList.toggle('ri-chat-3-fill');
+        icon.classList.toggle('ri-chat-3-line');
+        if (!commentsEl.classList.contains('hidden') && window.currentItem) {
+          loadComments(window.currentItem.id);
+          renderPlayerComments(window.currentItem.id);
+        }
+      }
+      // Read More
+      function toggleFullDesc(btn) {
+        const p = btn.closest('p');
+        const full = p.dataset.full;
+        if (btn.textContent.includes('más')) {
+          p.innerHTML = full + ` <button class="read-more-btn" onclick="toggleFullDesc(this)">Leer menos</button>`;
+        } else {
+          p.innerHTML = `${full.slice(0, 200)}... <button class="read-more-btn" onclick="toggleFullDesc(this)">Leer más</button>`;
+          p.dataset.full = full;
+        }
+      }
+      // Play Episode (General play for series)
+      async function playEpisode(seriesId, episodeNum, episodeName) {
+        const endpoint = `/tv/${seriesId}/season/1`;
+        try {
+          const seasons = await fetchTMDB(endpoint);
+          currentEpisodes = seasons.episodes;
+          currentEpisodeIndex = currentEpisodes.findIndex(ep => ep.episode_number === episodeNum);
+          if (currentEpisodeIndex === -1) currentEpisodeIndex = 0;
+          window.currentItem.episodeNum = episodeNum;
+          updateEpisodeUI();
+          showPlayer({ ...window.currentItem });
+          let progress = JSON.parse(localStorage.getItem(`progress-${seriesId}`) || '{}');
+          progress[episodeNum] = progress[episodeNum] || 0;
+          localStorage.setItem(`progress-${seriesId}`, JSON.stringify(progress));
+          loadContinueWatching();
+        } catch (e) {
+          console.error('Play episode error:', e);
+        }
+      }
+      // Reviews
+      function loadReviews(id, type) {
+        const userReviews = JSON.parse(localStorage.getItem(`reviews-${id}`) || '[]');
+        const allReviews = userReviews;
+        const reviewsList = document.getElementById('reviews-list');
+        if (allReviews.length === 0) {
+          reviewsList.innerHTML = '<p class="text-neutral text-center">No hay reseñas aún. Sé el primero.</p>';
+        } else {
+          reviewsList.innerHTML = allReviews.map(r => `
+            <div class="user-review">
+              <div class="user-review-header">
+                <span class="user-review-author">${r.user}</span>
+                <span class="text-accent">★${r.rating}</span>
+                <span class="user-review-date">${r.date}</span>
+              </div>
+              <p class="text-sm">${r.text}</p>
+            </div>
+          `).join('');
+        }
+      }
+      let currentRating = 0;
+      function setRating(stars) {
+        currentRating = stars;
+        const starsEl = document.getElementById('user-stars');
+        starsEl.innerHTML = Array(5).fill().map((_, i) => `<i class="ri-star-${i < stars ? 'fill' : 'line'} text-accent" onclick="setRating(${i+1})" role="button" aria-label="Estrella ${i+1}"></i>`).join('');
+      }
+      function submitReview() {
+        if (!currentRating || !document.getElementById('review-text').value.trim()) return alert('Selecciona estrellas y escribe reseña.');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const review = { 
+          id: window.currentItem.id, 
+          user: user.name || 'Anónimo', 
+          rating: currentRating, 
+          text: document.getElementById('review-text').value.trim(),
+          date: new Date().toISOString().split('T')[0]
+        };
+        let reviews = JSON.parse(localStorage.getItem(`reviews-${window.currentItem.id}`) || '[]');
+        reviews.push(review);
+        localStorage.setItem(`reviews-${window.currentItem.id}`, JSON.stringify(reviews));
+        loadReviews(window.currentItem.id, window.currentItem.type);
+        loadUserReviews();
+        document.getElementById('review-text').value = '';
+        setRating(0);
+        alert('¡Reseña enviada!');
+      }
+      function loadUserReviews() {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const allReviews = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key.startsWith('reviews-') && key !== 'reviews') {
+            const itemReviews = JSON.parse(localStorage.getItem(key) || '[]');
+            itemReviews.filter(r => r.user === user.name).forEach(r => allReviews.push(r));
+          }
+        }
+        document.getElementById('user-reviews').innerHTML = allReviews.slice(-5).map(r => `
+          <div class="bg-card p-3 rounded-lg">
+            <p class="font-semibold mb-1">★${r.rating} - ${r.text.slice(0, 50)}...</p>
+            <p class="text-sm text-neutral">${r.date}</p>
+          </div>
+        `).join('') || '<p class="text-gray-400">No hay reseñas aún.</p>';
+        document.getElementById('reviews-count').textContent = allReviews.length;
+      }
+      async function loadContinueWatching() {
+        const progress = JSON.parse(localStorage.getItem('progress') || '[]');
+        const container = document.getElementById('continue-items');
+        if (progress.length === 0) {
+          container.innerHTML = '<p class="text-center text-gray-400">Sigue viendo algo...</p>';
+          return;
+        }
+        try {
+          const htmlPromises = progress.map(async (p) => {
+            const data = await fetchTMDB(p.type === 'tv' ? `/tv/${p.id}` : `/movie/${p.id}`);
+            return `
+              <div class="continue-item">
+                <div class="movie-poster w-16 h-24" style="background-image: url('${data.poster_path ? IMAGE_BASE_URL + data.poster_path : ''}');" onclick="showDetails(${p.id}, '${p.type}')"></div>
+                <div class="flex-1">
+                  <p class="font-medium text-sm">${data.title || data.name}</p>
+                  <p class="text-xs text-gray-400">${p.currentTime || 'Ep 1'}</p>
+                </div>
+                <div class="continue-progress">
+                  <div class="continue-progress-fill" style="width: ${p.progress || 0}%"></div>
+                </div>
+                <button class="btn-primary text-xs px-4 py-1 ripple-effect" role="button" aria-label="Continuar"><i class="ri-play-fill"></i></button>
+              </div>
+            `;
+          });
+          container.innerHTML = (await Promise.all(htmlPromises)).join('');
+        } catch (e) {
+          console.error('Continue watching load error:', e);
+        }
+      }
+      function updateProgress(seriesId, episodeNum) {
+        let progressData = JSON.parse(localStorage.getItem(`progress-${seriesId}`) || '{}');
+        progressData[episodeNum] = Math.min(100, (progressData[episodeNum] || 0) + 20);
+        localStorage.setItem(`progress-${seriesId}`, JSON.stringify(progressData));
+        if (document.getElementById('episodes-section') && !document.getElementById('episodes-section').classList.contains('hidden')) {
+          showDetails(window.currentItem.id, window.currentItem.type);
+        }
+        loadContinueWatching();
+        playEpisode(seriesId, episodeNum, 'Episodio ' + episodeNum);
+      }
+      async function loadKidsContent() {
+        try {
+          document.getElementById('kids-carousel').innerHTML = Array(8).fill().map(() =>
+            `<div class="movie-poster" style="background-image: url('https://via.placeholder.com/110x165/FF69B4/FFFFFF?text=Kids');" data-title="Película Infantil"></div>`
+          ).join('');
+        } catch (e) {
+          console.error('Kids content load error:', e);
+        }
+      }
+      // Chat/Discussions
+      function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const msg = input.value.trim();
+        if (!msg) return;
+        const messages = document.getElementById('chat-messages');
+        messages.innerHTML += `<div class="chat-message"><strong>Tú:</strong> ${msg}</div>`;
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+        setTimeout(() => {
+          messages.innerHTML += `<div class="chat-message"><strong>Bot:</strong> ¡Interesante! ¿Qué opinas de la trama?</div>`;
+          messages.scrollTop = messages.scrollHeight;
+        }, 1000);
+      }
+      function loadDiscussions() {
+        const threads = [
+          { title: '¿Mejor película de superhéroes?', desc: '¡Vota y debate! 45 respuestas.', comments: 45 },
+          { title: 'Series underrated del 2025', desc: 'Comparte tus gems ocultas. 23 respuestas.', comments: 23 },
+          { title: 'Impacto de IA en el cine', desc: '¿Ayuda o perjudica? 12 respuestas.', comments: 12 }
+        ];
+        document.getElementById('discussion-threads').innerHTML = threads.map(t => `
+          <div class="discussion-thread">
+            <h4>${t.title}</h4>
+            <p>${t.desc}</p>
+            <button class="btn-secondary text-xs mt-1 ripple-effect" onclick="openDiscussion('${t.title}')" role="button" aria-label="Comentar">Comentar</button>
+          </div>
+        `).join('');
+      }
+      function createDiscussion() {
+        const title = prompt('Título de la discusión:');
+        if (title) {
+          alert(`Nueva discusión "${title}" creada. ¡Comparte con la comunidad!`);
+          loadDiscussions();
+        }
+      }
+      function openDiscussion(title) {
+        alert(`Abriendo discusión: ${title}. ¡Agrega tu comentario!`);
+      }
+      // Social Functions
+      function socialRate(stars) {
+        socialRatings.current = stars;
+        alert(`¡Rating social: ★${stars}! Compartido con amigos.`);
+      }
+      function loadMoreFriends() {
+        alert('Cargando más actividad de amigos...');
+        document.getElementById('friends-activity').innerHTML += `
+          <div class="activity-item">
+            <div class="activity-avatar">CF</div>
+            <div><strong>Chris Cine:</strong> Calificó <em>Stranger Things</em> ★★★★★</div>
+          </div>
+        `;
+      }
+      // Play
+      function playHero() { showPlayer(window.heroSlides[currentSlide]); }
+      function playDetails() { 
+        const itemKey = `${window.currentItem.type}-${window.currentItem.id}`;
+        if (unlockedItems[itemKey]) {
+          showPlayer(window.currentItem);
+        }
+      }
+      async function showPlayer(item, episodeNum = null) {
+        isSeries = item.type === 'tv';
+        document.getElementById('player-title').textContent = item.title || item.name;
+        try {
+          const videos = await fetchTMDB(item.type === 'movie' ? `/movie/${item.id}/videos` : `/tv/${item.id}/videos`);
+          const trailer = videos.results.find(v => v.type === 'Trailer')?.key || 'dQw4w9WgXcQ';
+          if (isSeries && episodeNum) {
+            document.getElementById('video-player').src = `https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&loop=1&playlist=${trailer}&start=${episodeNum * 60}`;
+          } else {
+            document.getElementById('video-player').src = `https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&loop=1&playlist=${trailer}`;
+          }
+          showView('player-view');
+          if (isSeries) {
+            const seasons = await fetchTMDB(`/tv/${item.id}/season/1`);
+            currentEpisodes = seasons.episodes;
+            if (episodeNum !== null) {
+              currentEpisodeIndex = currentEpisodes.findIndex(ep => ep.episode_number === episodeNum) || 0;
+            } else {
+              currentEpisodeIndex = 0;
+            }
+            updateEpisodeUI();
+            document.getElementById('episode-nav').classList.add('active');
+            document.getElementById('episode-info').classList.remove('hidden');
+            loadComments(item.id);
+          } else {
+            resetPlayer();
+          }
+          setTimeout(() => {
+            document.getElementById('subtitle-overlay').textContent = 'Subtítulos simulados...';
+            document.getElementById('subtitle-overlay').classList.remove('hidden');
+          }, 2000);
+        } catch (e) {
+          console.error('Player load error:', e);
+          document.getElementById('video-player').src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        }
+      }
+      function updateEpisodeUI() {
+        if (currentEpisodes.length > 0) {
+          const ep = currentEpisodes[currentEpisodeIndex];
+          document.getElementById('series-title').textContent = window.currentItem.data.name;
+          document.getElementById('episode-details').textContent = `Temporada 1 • Episodio ${ep.episode_number}`;
+          document.getElementById('nav-episode').textContent = `Ep ${ep.episode_number}`;
+          document.getElementById('video-player').src = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&start=${ep.episode_number * 60}`;
+        }
+      }
+      function handleSwipe() {
+        const diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0 && currentEpisodeIndex < currentEpisodes.length - 1) {
+            currentEpisodeIndex++;
+            updateEpisodeUI();
+          } else if (diff < 0 && currentEpisodeIndex > 0) {
+            currentEpisodeIndex--;
+            updateEpisodeUI();
+          }
+        }
+      }
+      function prevEpisode() {
+        if (currentEpisodeIndex > 0) {
+          currentEpisodeIndex--;
+          updateEpisodeUI();
+        }
+      }
+      function nextEpisode() {
+        if (currentEpisodeIndex < currentEpisodes.length - 1) {
+          currentEpisodeIndex++;
+          updateEpisodeUI();
+        }
+      }
+      function resetPlayer() {
+        isSeries = false;
+        currentEpisodes = [];
+        currentEpisodeIndex = 0;
+        document.getElementById('episode-nav').classList.remove('active');
+        document.getElementById('episode-info').classList.add('hidden');
+      }
+      function toggleSubtitles() {
+        const overlay = document.getElementById('subtitle-overlay');
+        overlay.classList.toggle('hidden');
+      }
+      function shareItem() {
+        if (navigator.share) {
+          navigator.share({ title: document.getElementById('details-title').textContent, url: window.location.href });
+        } else {
+          alert('Comparte: ' + window.location.href);
+        }
+      }
+      function copyLink() {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Enlace copiado!');
+      }
+      // Watchlist
+      async function loadWatchlist() {
+        const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
+        if (watchlist.length === 0) {
+          document.getElementById('watchlist-items').innerHTML = '<p class="text-center text-gray-400">Añade a tu lista.</p>';
+          return;
+        }
+        try {
+          const htmlPromises = watchlist.map(async (wl) => {
+            const data = await fetchTMDB(wl.type === 'tv' ? `/tv/${wl.id}` : `/movie/${wl.id}`);
+            return `
+              <div class="watchlist-item">
+                <div class="movie-poster w-12 h-18" style="background-image: url('${data.poster_path ? IMAGE_BASE_URL + data.poster_path : ''}');" onclick="showDetails(${wl.id}, '${wl.type}')"></div>
+                <div class="flex-1">
+                  <p class="font-medium text-sm">${wl.title}</p>
+                  <p class="text-xs text-gray-400">${data.release_date || data.first_air_date || 'N/A'}</p>
+                </div>
+                <button class="text-secondary text-xs" onclick="removeFromList(${wl.id})" role="button" aria-label="Remover de lista">✕</button>
+              </div>
+            `;
+          });
+          document.getElementById('watchlist-items').innerHTML = (await Promise.all(htmlPromises)).join('');
+        } catch (e) {
+          console.error('Watchlist load error:', e);
+        }
+      }
+      function addToList(type) {
+        let item = type === 'hero' ? window.heroSlides[currentSlide] : window.currentItem;
+        let watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
+        if (!watchlist.find(w => w.id === item.id)) {
+          watchlist.push({ id: item.id, type: item.type || 'movie', title: item.title || item.name });
+          localStorage.setItem('watchlist', JSON.stringify(watchlist));
+          loadWatchlist();
+          updateCounts();
+        }
+      }
+      function removeFromList(id) {
+        let watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
+        watchlist = watchlist.filter(w => w.id !== id);
+        localStorage.setItem('watchlist', JSON.stringify(watchlist));
+        loadWatchlist();
+        updateCounts();
+      }
+      function updateCounts() {
+        const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
+        document.getElementById('watchlist-count').textContent = watchlist.length;
+        document.getElementById('watch-time').textContent = `${Math.floor(Math.random() * 100)}h`;
+        document.getElementById('avg-rating').textContent = `★${(3 + Math.random() * 2).toFixed(1)}`;
+        document.getElementById('friends-count').textContent = Math.floor(Math.random() * 10) + 3;
+        document.getElementById('shared-count').textContent = Math.floor(Math.random() * 20) + 5;
+      }
+      function showView(viewId) {
+        document.querySelectorAll('[id$="-view"]').forEach(v => {
+          v.classList.add('hidden-view');
+          v.classList.remove('active-view');
+        });
+        const targetView = document.getElementById(viewId);
+        if (targetView) {
+          targetView.classList.remove('hidden-view');
+          targetView.classList.add('active-view');
+          targetView.classList.add('animate-fade-in');
+          targetView.scrollTop = 0;
+          setTimeout(() => targetView.classList.remove('animate-fade-in'), 600);
+        }
+        if (viewId !== 'home-view') {
+          clearInterval(sliderInterval);
+        } else {
+          startAutoSlide();
+        }
+      }
       function debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -1959,263 +2685,146 @@
           timeout = setTimeout(later, wait);
         };
       }
-      // Implementations for placeholders
-      function showView(view) {
-        document.querySelectorAll('[id$="-view"]').forEach(v => v.classList.add('hidden-view'));
-        document.getElementById(view).classList.remove('hidden-view');
-        document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('text-primary'));
-        document.getElementById(`${view.split('-')[0]}-btn`)?.classList.add('text-primary');
-      }
-      function toggleLike(id) {
-        likes[id] = !likes[id];
-        localStorage.setItem('likes', JSON.stringify(likes));
-        event.target.closest('.like-btn').classList.toggle('liked');
-      }
-      function playDetails() {
-        if (window.currentItem && window.currentItem.data.preview) {
-          playTrack(window.currentItem.data);
-        } else if (window.currentItem.type === 'album') {
-          // Play first track
-          fetchDeezer(`/album/${window.currentItem.id}/tracks?limit=1`).then(res => {
-            if (res.data.length > 0) playTrack(res.data[0]);
+      async function loadTrailers() {
+        try {
+          const data = await fetchTMDB('/movie/now_playing');
+          const trailersPromises = data.results.slice(0, 3).map(async (m) => {
+            const videos = await fetchTMDB(`/movie/${m.id}/videos`);
+            const trailer = videos.results.find(v => v.type === 'Trailer');
+            return trailer ? `<iframe class="w-32 h-18 rounded-lg" src="https://www.youtube.com/embed/${trailer.key}?autoplay=0" frameborder="0" allowfullscreen></iframe>` : '';
           });
-        }
-        showView('player-view');
-      }
-      function filterByGenre(genre) {
-        document.querySelectorAll('.genre-chip').forEach(chip => chip.classList.remove('active'));
-        event.target.classList.add('active');
-        // Implement filtering logic here
-        console.log('Filtering by genre:', genre);
-      }
-      function filterMediaType(type) {
-        document.querySelectorAll('.media-type-chip').forEach(chip => chip.classList.remove('active'));
-        event.target.classList.add('active');
-        currentMediaType = type;
-        // Reload home with filter
-        loadHomeWithFilter();
-      }
-      async function loadHomeWithFilter() {
-        // Reload relevant sections based on type
-        if (currentMediaType === 'album') {
-          await loadNewReleases();
-        } else if (currentMediaType === 'artist') {
-          await loadArtists();
-        } else {
-          await loadTrending();
+          document.getElementById('trailers-container').innerHTML = (await Promise.all(trailersPromises)).filter(t => t).join('');
+        } catch (e) { 
+          console.error('Trailers load error:', e); 
+          document.getElementById('trailers-container').innerHTML = '<p class="text-neutral">No hay trailers disponibles.</p>';
         }
       }
-      function showPreview(id, type) {
-        // Simulate preview, e.g., YouTube embed or Deezer preview
-        document.getElementById('preview-title').textContent = `Preview: ${type} ${id}`;
-        document.getElementById('preview-desc').textContent = 'Vista previa cargada desde Deezer.';
-        document.getElementById('preview-modal').classList.add('show');
+      function fetchTrending() { alert('Tendencias cargadas!'); showView('home-view'); }
+      function fetchTopRated() { alert('Top rated cargadas!'); showView('home-view'); }
+      // Init saved
+      const savedTheme = localStorage.getItem('theme') || 'purple';
+      changeTheme(savedTheme);
+      const savedFont = localStorage.getItem('font') || 'inter';
+      changeFont(savedFont);
+      const kidsMode = localStorage.getItem('kidsMode') === 'true';
+      document.getElementById('kids-mode-toggle').checked = kidsMode;
+      if (kidsMode) document.body.classList.add('kids-mode');
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      document.getElementById('dark-mode-toggle').checked = darkMode;
+      if (darkMode) document.body.classList.add('dark-enhanced');
+      const autoSlide = localStorage.getItem('autoSlide') === 'true';
+      document.getElementById('auto-slide-toggle').checked = autoSlide;
+      if (!autoSlide) clearInterval(sliderInterval);
+      // Preview Modal
+      async function showPreview(id, type) {
+        try {
+          const endpoint = type === 'movie' ? `/movie/${id}` : `/tv/${id}`;
+          const data = await fetchTMDB(endpoint);
+          const videos = await fetchTMDB(`${endpoint}/videos`);
+          const trailer = videos.results.find(v => v.type === 'Trailer')?.key || 'dQw4w9WgXcQ';
+          document.getElementById('preview-title').textContent = data.title || data.name;
+          document.getElementById('preview-trailer').src = `https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&loop=1&playlist=${trailer}`;
+          document.getElementById('preview-desc').textContent = data.overview.slice(0, 200) + (data.overview.length > 200 ? '...' : '');
+          const fill = (data.vote_average / 10) * 100;
+          document.querySelector('.preview-rating-fill').style.width = `${fill}%`;
+          document.getElementById('preview-modal').classList.add('show');
+        } catch (e) { 
+          console.error('Preview error:', e); 
+          alert('Error al cargar preview.');
+        }
       }
       function hidePreview() {
-        document.getElementById('preview-modal').classList.remove('show');
+        const modal = document.getElementById('preview-modal');
+        const iframe = document.getElementById('preview-trailer');
+        iframe.src = '';
+        modal.classList.remove('show');
       }
-      function startVoiceSearch() {
-        alert('Búsqueda por voz activada (simulada).');
-      }
-      function startQuiz() {
-        alert('¡Quiz de música iniciado!');
-      }
-      function quickShare() {
-        alert('Compartir rápido activado.');
-      }
-      function toggleOffline() {
-        alert('Modo offline toggled.');
-      }
-      async function fetchTrending() {
-        await loadTrending();
-        showView('home-view');
-      }
-      async function fetchTopRated() {
-        await loadTopCharts();
-        showView('home-view');
-      }
-      function loadLibrary() {
-        document.getElementById('library-items').innerHTML = Object.keys(likes).map(id => 
-          `<div class="library-item"><i class="ri-music-line"></i><span>Track ${id}</span></div>`
-        ).join('') || '<p class="text-neutral">Tu biblioteca está vacía.</p>';
-      }
-      function loadUserReviews() {
-        document.getElementById('user-reviews').innerHTML = '<div class="user-review"><p>No hay reseñas aún.</p></div>';
-      }
-      function loadDiscussions() {
-        // Already static
-      }
-      function loadContinueListening() {
-        // Simulate
-      }
-      function loadLyrics() {
-        document.getElementById('lyrics-container').innerHTML = '<p class="text-sm">Letras simuladas...</p>';
-      }
-      function showLoggedIn() {
-        document.getElementById('login-btn').classList.add('hidden');
-        document.getElementById('user-welcome').classList.remove('hidden');
-        document.getElementById('logout-btn').classList.remove('hidden');
-      }
-      function handleLogin(e) {
-        e.preventDefault();
-        localStorage.setItem('user', 'demo-user');
-        showLoggedIn();
-        document.getElementById('login-modal').style.display = 'none';
-        alert('¡Sesión iniciada!');
-      }
-      function handleRegister(e) {
-        e.preventDefault();
-        localStorage.setItem('user', 'new-user');
-        showLoggedIn();
-        document.getElementById('register-modal').style.display = 'none';
-        alert('¡Cuenta creada!');
-      }
-      function showRegister() {
-        document.getElementById('login-modal').style.display = 'none';
-        document.getElementById('register-modal').style.display = 'block';
-      }
-      function showLogin() {
-        document.getElementById('register-modal').style.display = 'none';
-        document.getElementById('login-modal').style.display = 'block';
-      }
-      function handleLogout() {
-        localStorage.removeItem('user');
-        document.getElementById('login-btn').classList.remove('hidden');
-        document.getElementById('user-welcome').classList.add('hidden');
-        document.getElementById('logout-btn').classList.add('hidden');
-        alert('Sesión cerrada.');
-      }
-      function showNotifications() {
-        alert('Notificaciones (simuladas).');
-      }
-      function toggleDarkMode() {
-        // Already dark-enhanced
-      }
-      function toggleHighContrast() {
-        document.body.classList.toggle('high-contrast');
-        localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
-      }
-      function toggleNotifications() {}
-      function toggleLyricsDefault() {}
-      function toggleChatNotifications() {}
-      function toggleAutoSlide() {
-        if (document.getElementById('auto-slide-toggle').checked) {
-          startSliderInterval();
-        } else {
-          clearInterval(sliderInterval);
+      // Shorts - Connected to details, actual trailers, improved comments
+      async function loadShorts() {
+        try {
+          const data = await fetchTMDB('/trending/all/day', { page: 1 });
+          shortsData = data.results.slice(0, 5);
+          const shortsHTML = await Promise.all(shortsData.map(async (item, index) => {
+            const videos = await fetchTMDB(item.media_type === 'movie' ? `/movie/${item.id}/videos` : `/tv/${item.id}/videos`);
+            const trailer = videos.results.find(v => v.type === 'Trailer')?.key || 'dQw4w9WgXcQ';
+            shortComments[index] = JSON.parse(localStorage.getItem(`shortComments-${index}`) || '[]');
+            const commentsHtml = shortComments[index].slice(-3).reverse().map(c => 
+              `<div class="short-comment-item">
+                <header><span>${c.user}</span><span>${c.date}</span></header>
+                <p>${c.text}</p>
+              </div>`
+            ).join('');
+            return `
+              <div class="short-item" onclick="showDetails(${item.id}, '${item.media_type}')">
+                <iframe class="short-video" src="https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&loop=1&playlist=${trailer}" frameborder="0" allowfullscreen></iframe>
+                <div class="short-overlay">
+                  <h3 onclick="event.stopPropagation(); showDetails(${item.id}, '${item.media_type}')" style="cursor: pointer;">${item.title || item.name}</h3>
+                  <p>${(item.overview || '').slice(0, 100)}...</p>
+                </div>
+                <div class="short-actions">
+                  <i class="ri-share-forward-line short-like" onclick="event.stopPropagation(); shareShort(${index})" role="button" aria-label="Compartir short" tabindex="0" style="font-size: 1.5rem;"></i>
+                  <i class="ri-heart-line short-like ${likes[item.id]?.liked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleShortLike(${index})" role="button" aria-label="Like short" tabindex="0"></i>
+                  <i class="ri-chat-3-line short-like" onclick="event.stopPropagation(); toggleShortComments(${index})" role="button" aria-label="Toggle comentarios short" tabindex="0"></i>
+                </div>
+                <div class="short-comments" id="short-comments-${index}">
+                  ${commentsHtml}
+                  <input class="comment-input" placeholder="Comenta..." onkeypress="if(event.key==='Enter') { event.stopPropagation(); addShortComment(${index}) }" />
+                </div>
+              </div>
+            `;
+          }));
+          document.getElementById('shorts-container').innerHTML = shortsHTML.join('');
+        } catch (e) { 
+          console.error('Shorts load error:', e); 
+          document.getElementById('shorts-container').innerHTML = '<div class="short-item"><p class="text-white text-center">Error al cargar shorts.</p></div>';
         }
       }
-      function clearData() {
-        localStorage.clear();
-        alert('Datos borrados.');
-        location.reload();
+      function toggleShortComments(index) {
+        const commentsEl = document.getElementById(`short-comments-${index}`);
+        commentsEl.classList.toggle('show');
       }
-      function resetPlayer() {
-        document.getElementById('mini-player').classList.add('hidden');
-        isPlaying = false;
+      function addShortComment(index) {
+        const input = document.querySelector(`#short-comments-${index} .comment-input`);
+        const text = input.value.trim();
+        if (!text) return alert('Escribe un comentario.');
+        const user = JSON.parse(localStorage.getItem('user') || '{}').name || 'Anónimo';
+        shortComments[index].push({ user, text, date: new Date().toLocaleDateString('es-ES') });
+        localStorage.setItem(`shortComments-${index}`, JSON.stringify(shortComments[index]));
+        input.value = '';
+        renderShortComments(index);
       }
-      function updateCounts() {
-        document.getElementById('library-count').textContent = Object.keys(likes).length;
-        document.getElementById('reviews-count').textContent = 0; // Simulate
+      function renderShortComments(index) {
+        const commentsHtml = shortComments[index].slice(-3).reverse().map(c => 
+          `<div class="short-comment-item">
+            <header><span>${c.user}</span><span>${c.date}</span></header>
+            <p>${c.text}</p>
+          </div>`
+        ).join('');
+        document.getElementById(`short-comments-${index}`).innerHTML = commentsHtml + '<input class="comment-input" placeholder="Comenta..." onkeypress="if(event.key=\'Enter\') { event.stopPropagation(); addShortComment(' + index + ') }" />';
       }
-      function toggleLikeDetails() {
-        toggleLike(currentItemId);
+      function shareShort(index) {
+        alert(`Compartir short: ${shortsData[index].title}`);
       }
-      function addToLibrary(context) {
-        alert('Añadido a biblioteca.');
-      }
-      function downloadItem() {
-        alert('Descargando...');
-      }
-      function setRating(rating) {
-        alert(`Rating: ${rating}`);
-      }
-      function submitReview() {
-        const text = document.getElementById('review-text').value;
-        if (text) {
-          document.getElementById('reviews-list').innerHTML += `<div class="user-review"><p>${text}</p></div>`;
-          document.getElementById('review-text').value = '';
-          alert('Reseña enviada.');
+      // News - Upcoming Mix
+      async function loadNewsTMDB() {
+        try {
+          const movies = await fetchTMDB('/movie/upcoming', { page: 1 });
+          const tv = await fetchTMDB('/tv/on_the_air', { page: 1 });
+          const allUpcoming = [...movies.results.slice(0, 3), ...tv.results.slice(0, 2)];
+          document.getElementById('news-items').innerHTML = allUpcoming.map(item => `
+            <div class="news-item">
+              <img src="${IMAGE_BASE_URL}${item.poster_path}" alt="${item.title || item.name}" class="w-full h-32 object-cover rounded mb-2" />
+              <h3 class="font-semibold mb-1">${item.title || item.name}</h3>
+              <p class="text-sm text-gray-300">${(item.overview || '').slice(0, 100)}...</p>
+              <p class="text-xs text-accent mt-1">Próximo: ${item.release_date || item.first_air_date}</p>
+            </div>
+          `).join('');
+        } catch (e) { 
+          console.error('News TMDB load error:', e); 
+          document.getElementById('news-items').innerHTML = '<div class="news-item"><p class="text-neutral">No hay noticias disponibles.</p></div>';
         }
       }
-      function addComment() {
-        const text = document.getElementById('comment-input').value;
-        if (text) {
-          document.getElementById('comments-list').innerHTML += `<div class="comment-item"><p>${text}</p></div>`;
-          document.getElementById('comment-input').value = '';
-          alert('Comentario añadido.');
-        }
-      }
-      function toggleLyrics() {
-        alert('Letras toggled.');
-      }
-      function togglePlayerComments() {
-        document.getElementById('player-comments').classList.toggle('show');
-      }
-      function addPlayerComment() {
-        const text = document.getElementById('player-comment-input').value;
-        if (text) {
-          document.getElementById('player-comments-list').innerHTML += `<div class="player-comment-item"><strong>Tú:</strong> ${text}</div>`;
-          document.getElementById('player-comment-input').value = '';
-        }
-      }
-      function socialRate(rating) {
-        socialRatings[rating] = (socialRatings[rating] || 0) + 1;
-        alert(`Rating social: ${rating}`);
-      }
-      function loadMoreFriends() {
-        alert('Cargando más amigos...');
-      }
-      function openDiscussion(title) {
-        alert(`Abriendo discusión: ${title}`);
-      }
-      function createDiscussion() {
-        const title = prompt('Título de la discusión:');
-        if (title) {
-          document.getElementById('discussion-threads').innerHTML += `<div class="discussion-thread"><h4>${title}</h4><p>Nueva discusión.</p></div>`;
-        }
-      }
-      function sendMessage() {
-        const text = document.getElementById('chat-input').value;
-        if (text) {
-          document.getElementById('chat-messages').innerHTML += `<div class="chat-message"><strong>Tú:</strong> ${text}</div>`;
-          document.getElementById('chat-input').value = '';
-        }
-      }
-      function changeTheme(theme) {
-        document.body.className = document.body.className.replace(/theme-\w+/, `theme-${theme}`);
-      }
-      function changeFont(font) {
-        document.body.className = document.body.className.replace(/\w+-font/, `${font}`);
-        document.body.classList.add(font);
-      }
-      function loadClips() {
-        document.getElementById('clips-container').innerHTML = '<div class="clip-item"><video class="clip-video" src="https://example.com/clip.mp4" autoplay muted loop></video></div>';
-      }
-      function loadCommunityPicks() {
-        document.getElementById('community-picks-carousel').innerHTML = '<div class="album-art" style="background-image: ur[](https://via.placeholder.com/110x110/1DB954/FFFFFF?text=Shared);"></div>';
-      }
-      function loadGenres() {
-        const genres = ['Pop', 'Rock', 'Hip-Hop', 'Electronic'];
-        document.getElementById('genres-grid').innerHTML = genres.map(g => `<div class="genre-card" onclick="loadGenre('${g.toLowerCase()}')">${g}</div>`).join('');
-      }
-      async function loadGenre(genre) {
-        const data = await fetchDeezer('/search', { q: genre, limit: 10 });
-        document.getElementById('genre-title').textContent = `${genre.charAt(0).toUpperCase() + genre.slice(1)}`;
-        document.getElementById('genre-carousel').innerHTML = data.map(t => createArt(t, 'track')).join('');
-        document.getElementById('genre-results').classList.remove('hidden');
-      }
-      function loadCharts() {
-        document.getElementById('charts-items').innerHTML = '<p>Charts cargados desde Deezer.</p>';
-      }
-      function loadArtists() {
-        document.getElementById('artists-carousel').innerHTML = '<div class="album-art" style="background-image: ur[](https://via.placeholder.com/110x110/1DB954/FFFFFF?text=Artist);"></div>';
-      }
-      // Additional placeholders for completeness
-      function toggleLikePlayer() {
-        toggleLike(currentTrackIndex.toString());
-      }
-      console.log("¡MusicVibe Listo con Deezer API! 🎵✨ - Ahora la API carga contenido real en sliders, búsquedas y secciones.");
+      console.log("¡CineVibe Actualizado con Social, Reels Conectados & UI Mejorada! 🎬✨");
     </script>
   </body>
 </html>
